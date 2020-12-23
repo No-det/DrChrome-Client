@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import DoctorHome from "./Components/DoctorHome";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DoctorHome />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
