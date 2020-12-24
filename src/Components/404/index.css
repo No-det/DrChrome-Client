@@ -58,3 +58,69 @@
 .nf__top blockquote {
   font-size: 24px;
 }
+
+@media screen and (max-width: 1024px) {
+  .nf__main {
+    flex-direction: column-reverse;
+  }
+
+  .nf__credit {
+    padding-top: 10px;
+    font-size: 18px;
+  }
+
+  .nf__left {
+    min-height: auto;
+  }
+}
+@media screen and (max-width: 768px) {
+  .nf__main {
+    flex-direction: column-reverse;
+  }
+  .nf__right img {
+    height: 300px;
+  }
+  .nf__top blockquote {
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .nf__credit {
+    padding-top: 10px;
+    font-size: 18px;
+  }
+  .nf__top blockquote::before {
+    content: "";
+  }
+  .nf__left {
+    min-height: auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .nf__main {
+    flex-direction: column-reverse;
+  }
+  .nf__right img {
+    height: 200px;
+  }
+  .nf__top blockquote {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .nf__credit {
+    padding-top: 10px;
+    font-size: 16px;
+  }
+  .nf__top blockquote::before {
+    content: "";
+  }
+  .nf__left {
+    min-height: auto;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  body {
+    width: 360px;
+  }
+}
