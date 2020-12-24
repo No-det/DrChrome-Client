@@ -1,5 +1,146 @@
 .doc_main {
   height: 100vh;
   width: 100%;
-  background-color: aqua;
+  display: flex;
+  padding: 20px 45px;
+  overflow: auto;
+}
+
+.docLeft {
+  display: flex;
+  flex: 0.7;
+  flex-direction: column;
+}
+
+.docRight {
+  display: flex;
+  flex: 0.3;
+}
+
+.docLeft-1,
+.docLeft-2,
+.docLeft-3 {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.docLeft-1 {
+  flex: 0.1;
+}
+
+.docLeft-2 {
+  flex: 0.2;
+}
+
+.docLeft-3 {
+  flex: 0.7;
+}
+
+.doc_search {
+  height: 60px;
+  background: #e6f8ff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  flex: 0.6;
+  position: relative;
+  margin-right: 20px;
+}
+
+.appHisBtn {
+  background: #009bd9;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
+  height: 60px;
+  flex: 0.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translate(-5%, -50%);
+  cursor: pointer;
+}
+
+.greetingCard {
+  flex: 0.6;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.greetingCard p {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.greetingCard p em {
+  font-weight: 600;
+  color: #009bd9;
+  font-size: 20px;
+}
+
+.totAppBtn {
+  flex: 0.4;
+  height: 170px;
+  background: #009bd9;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.totAppBtn p {
+  font-size: 25px;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.appContainer {
+  flex: 1;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 15px 0;
+}
+
+.tableHeader {
+  width: 90%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.tableHeader p {
+  font-size: 18px;
+  font-weight: 500;
 }
