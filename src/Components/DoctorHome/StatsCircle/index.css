@@ -21,7 +21,7 @@
 .stats {
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .statsColor {
@@ -33,7 +33,7 @@
 
 .statsName {
   font-weight: 500;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .bigCircle {

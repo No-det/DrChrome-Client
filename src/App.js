@@ -1,11 +1,8 @@
-import './App.css';
+import "./App.css";
+import DoctorHome from "./Components/DoctorHome";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
-  );
+  return <DoctorHome />;
 }
 
 export default App;

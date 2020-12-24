@@ -1,12 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-// import App from "./App";
-import DoctorHome from "./Components/DoctorHome";
+import Router from "./Router";
 
 ReactDOM.render(
   <React.StrictMode>
-    <DoctorHome />
+    <Router />
   </React.StrictMode>,
   document.getElementById("root")
 );
