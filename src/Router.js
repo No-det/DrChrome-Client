@@ -3,6 +3,7 @@ import PatientHome from "./Components/PatientHome";
 import DoctorHome from "./Components/DoctorHome";
 import Signin from "./Components/Index/Signup";
 import Design from "./Components/Index/Designs/design";
+import Layout from "./Layout";
 
 function Router() {
   return (

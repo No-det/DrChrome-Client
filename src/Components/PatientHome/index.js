@@ -39,7 +39,10 @@ const PatientHome = () => {
         </div>
         <div className="patient__header__right">
           <div className="patient__dp">
-            <img src="#" alt="Raman's DP" />
+            <img
+              src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg"
+              alt="Raman's DP"
+            />
           </div>
           <p>Raman</p>
         </div>
