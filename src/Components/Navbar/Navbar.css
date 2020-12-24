@@ -27,3 +27,7 @@
 .Navbar .active {
   box-shadow: -7px -7px 14px #00adf3, 5px 5px 10px #0072a0;
 }
+.Navbar .logout {
+  bottom: 0;
+  position: fixed;
+}

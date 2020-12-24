@@ -31,11 +31,7 @@ const DoctorCard = () => {
           </tr>
         </table>
         <div className="doctors__card__appointment__button">
-<<<<<<< HEAD
           <a href="/">MAKE APPOINTMENT</a>
-=======
-          <a href="#">MAKE APPOINTMENT</a>
->>>>>>> c9cf9bbf647a58478c5501a5f7560061a2225385
         </div>
       </div>
     </div>
