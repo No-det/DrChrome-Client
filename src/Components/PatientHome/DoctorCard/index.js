@@ -29,7 +29,7 @@ const DoctorCard = () => {
           </tr>
         </table>
         <div className="doctors__card__appointment__button">
-          <a href="#">MAKE APPOINTMENT</a>
+          <a href="/">MAKE APPOINTMENT</a>
         </div>
       </div>
     </div>
