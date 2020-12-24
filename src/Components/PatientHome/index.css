@@ -1,0 +1,127 @@
+.patient__container {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+.patient__greeting {
+  display: flex;
+}
+.patient__header__left {
+  display: flex;
+  flex-direction: column;
+  flex: 6;
+}
+.patient__search {
+  display: flex;
+  flex: 6;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #e5f8ff;
+  margin-right: 30px;
+  border-radius: 7px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.patient__search input {
+  outline: none;
+  border: none;
+  flex: 1;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: 600;
+}
+.patient__greetings {
+  display: flex;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  justify-content: space-around;
+  flex: 6;
+  margin-right: 30px;
+  margin-top: 30px;
+  padding: 40px 0px;
+  border-radius: 7px;
+  min-height: 230px;
+}
+.patient__greetings__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.patient__greetings__left h3 {
+  font-size: 28px;
+  font-weight: 600;
+}
+.patient__greetings__left h3 span {
+  color: #009bd9;
+}
+.patient__greetings__left p {
+  font-size: 20px;
+  font-weight: 400;
+}
+.patient__greetings__right {
+  display: flex;
+  align-items: center;
+}
+.patient__header__mid {
+  flex: 3;
+}
+.patient__appointment__history {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  border-radius: 7px;
+  background-color: #009bd9;
+  padding: 20px 40px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.patient__appointment__history p {
+  font-size: 20px;
+}
+.patient__next__appointment {
+  background-color: #009bd9;
+  color: white;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 40px;
+  margin-top: 30px;
+  min-height: 230px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.patient__next__appointment h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.patient__next__appointment p {
+  font-size: 28px;
+  font-weight: 600;
+}
+.patient__header__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 2;
+}
+.patient__dp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e5f8ff;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+.patient__header__right p {
+  font-weight: 600;
+  font-size: 28px;
+}
+.patient__doctors {
+  padding: 30px 0;
+}
+.patient__doctors__cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
