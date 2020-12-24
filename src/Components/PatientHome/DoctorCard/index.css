@@ -1,0 +1,58 @@
+.doctors__card {
+  display: flex;
+  min-height: 230px;
+  align-items: center;
+  width: calc(50% - 60px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px 15px;
+  border-radius: 7px;
+  margin: 30px;
+}
+.doctors__card__left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.doctors__card__dp {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e5f8ff;
+}
+.doctors__card__brief h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.doctors__card__brief p {
+  font-size: 14px;
+  font-weight: 600;
+}
+.doctors__card__right {
+  flex: 2;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6a6a6a;
+}
+.doctors__card__details tr td {
+  min-width: 150px;
+}
+.doctors__card__appointment__button a {
+  font-weight: 700;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 7px;
+  background-color: #01d9ad;
+  text-decoration: none;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.doctors__card__appointment__button {
+  display: flex;
+  align-items: center;
+}
