@@ -120,6 +120,10 @@
 .patient__doctors {
   padding: 30px 0;
 }
+.patient__doctors h3 {
+  font-size: 28px;
+  font-weight: 600;
+}
 .patient__doctors__cards {
   display: flex;
   justify-content: space-between;
