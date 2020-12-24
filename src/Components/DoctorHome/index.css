@@ -49,6 +49,18 @@
   flex: 0.6;
   position: relative;
   margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.doc_search input {
+  outline: none;
+  border: none;
+  flex: 1;
+  background-color: transparent;
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 20px;
 }
 
 .appHisBtn {
@@ -67,10 +79,7 @@
 }
 
 .searchIcon {
-  position: absolute;
-  top: 50%;
-  right: 5%;
-  transform: translate(-5%, -50%);
+  margin-right: 20px;
   cursor: pointer;
 }
 

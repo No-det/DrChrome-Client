@@ -10,6 +10,7 @@ const DoctorHome = () => {
       <div className="docLeft">
         <div className="docLeft-1">
           <div className="doc_search">
+            <input type="text" placeholder="Seach for patients" />
             <Icon
               icon={bxSearch}
               style={{ fontSize: "30px" }}
