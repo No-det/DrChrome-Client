@@ -28,12 +28,7 @@ const DoctorCard = () => {
           </tr>
         </table>
         <div className="doctors__card__appointment__button">
-<<<<<<< HEAD:src/Components/PatientHome/DoctorCard/index.jsx
-        // eslint-disable-next-line
-          <a href="#">MAKE APPOINTMENT</a>
-=======
           <a href="/">MAKE APPOINTMENT</a>
->>>>>>> 567c7dd4880b683c177bcad96d3c8d93541a7f43:src/Components/PatientHome/DoctorCard/index.js
         </div>
       </div>
     </div>

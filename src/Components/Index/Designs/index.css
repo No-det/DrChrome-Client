@@ -1,0 +1,20 @@
+.shape {
+    height: 120px;
+    width: 120px;
+}
+.layer-1 {
+    display: flex;
+    padding-left: 120px;
+}
+.layer-2 {
+    display: flex;
+    padding-left: 0;
+}
+.layer-3 {
+    display: flex;
+    padding-left: 120px;
+}
+.layer-4 {
+    display: flex;
+    padding-left: 240px;
+}
