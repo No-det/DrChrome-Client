@@ -13,15 +13,19 @@ function Router() {
       <Switch>
         <Route path={["/test", "/doctor", "/patient"]}>
           <Layout>
-            <Route path="/test" component={Navbar} />
-            <Route path="/doctor" component={DoctorHome} />
-            <Route path="/patient" component={PatientHome} />
+            <Switch>
+              <Route path="/test" component={Navbar} />
+              <Route path="/doctor" component={DoctorHome} />
+              <Route path="/patient" component={PatientHome} />
+            </Switch>
           </Layout>
         </Route>
-        <Route path={["/", "/singup"]}>
-          <Route exact path="/" component={Signin} />
-          <Route path="/signup" component={Signup} />
-          <Route component={NotFound} />
+        <Route path={["/", "/signup"]}>
+          <Switch>
+            <Route exact path="/" component={Signin} />
+            <Route exact path="/signup" component={Signup} />
+            <Route component={NotFound} />
+          </Switch>
         </Route>
       </Switch>
     </BrowserRouter>
