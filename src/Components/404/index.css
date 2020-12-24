@@ -1,3 +1,60 @@
-.nf_main {
-  height: 100vh;
+.nf__main {
+  min-height: 100vh;
+  padding: 0 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nf__right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nf__right img {
+  height: 400px;
+}
+.nf__main a {
+  cursor: pointer;
+  padding: 15px 30px;
+  background-color: #01d9ad;
+  color: white;
+  font-weight: 600;
+  border-radius: 7px;
+  text-decoration: none;
+}
+.nf__top blockquote::before {
+  content: "\201c";
+  font-size: 100px;
+  color: #01d9ad;
+}
+.nf__credit::before {
+  content: "\2014\0020";
+}
+.nf__credit {
+  font-size: 18px;
+}
+.nf__left {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.nf__top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 50px;
+}
+.nf__top {
+  background-color: #d0fff6;
+  padding: 30px;
+  border: 0px solid #01d9ad;
+  border-left-width: 15px;
+}
+.nf__top blockquote {
+  font-size: 24px;
 }
