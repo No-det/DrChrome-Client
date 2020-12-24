@@ -1,5 +1,4 @@
 import "./index.css";
-
 const DoctorCard = () => {
   return (
     <div className="doctors__card">
@@ -29,6 +28,7 @@ const DoctorCard = () => {
           </tr>
         </table>
         <div className="doctors__card__appointment__button">
+        // eslint-disable-next-line
           <a href="#">MAKE APPOINTMENT</a>
         </div>
       </div>
