@@ -2,6 +2,7 @@ import "./index.css";
 import { Icon } from "@iconify/react";
 import bxSearch from "@iconify/icons-bx/bx-search";
 import AppointmentCard from "./AppointmentCard";
+import StatsCircle from "./StatsCircle";
 
 const DoctorHome = () => {
   return (
@@ -42,13 +43,27 @@ const DoctorHome = () => {
             <AppointmentCard />
             <AppointmentCard />
             <AppointmentCard />
-            <AppointmentCard />
-            <AppointmentCard />
-            <AppointmentCard />
           </div>
         </div>
       </div>
-      <div className="docRight"></div>
+      <div className="docRight">
+        <div className="docDetails">
+          <p>Dr. Appukuttan</p>
+          <img
+            src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg"
+            alt="avatart"
+            style={{ marginRight: 10 }}
+          />
+        </div>
+        <div className="lastReport">
+          <h2>Last day's report</h2>
+          <StatsCircle />
+        </div>
+        <div className="lastReport">
+          <h2>Monthly report</h2>
+          <StatsCircle />
+        </div>
+      </div>
     </div>
   );
 };

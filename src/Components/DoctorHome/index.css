@@ -8,13 +8,15 @@
 
 .docLeft {
   display: flex;
-  flex: 0.7;
+  flex: 0.6;
   flex-direction: column;
 }
 
 .docRight {
   display: flex;
-  flex: 0.3;
+  flex: 0.4;
+  flex-direction: column;
+  padding-left: 45px;
 }
 
 .docLeft-1,
@@ -143,4 +145,27 @@
 .tableHeader p {
   font-size: 18px;
   font-weight: 500;
+}
+
+.docDetails {
+  flex: 0.1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.docDetails img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.docDetails p {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.lastReport {
+  flex: 0.45;
 }
