@@ -1,24 +1,51 @@
 import "./Navbar.css";
+import { useContext } from "react";
+import { NavbarContext } from "../../Contexts/Navbar__Context";
+import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
+  const { selected, setSelected } = useContext(NavbarContext);
+
   return (
     <div className="Navbar">
-      <a href="/" className={`material-icons ${props.home}`}>
+      <Link
+        to="/"
+        className={selected === 1 ? `material-icons active` : `material-icons`}
+        onClick={() => setSelected(1)}
+      >
         home
-      </a>
-      <a href="/" className={`material-icons ${props.settings}`}>
+      </Link>
+      <Link
+        to="/"
+        className={selected === 2 ? `material-icons active` : `material-icons`}
+        onClick={() => setSelected(2)}
+      >
         settings
-      </a>
-      <a href="/" className={`material-icons ${props.storage}`}>
+      </Link>
+      <Link
+        to="/"
+        className={selected === 3 ? `material-icons active` : `material-icons`}
+        onClick={() => setSelected(3)}
+      >
         folder
-      </a>
-      <a href="/" className={`material-icons ${props.notifications}`}>
+      </Link>
+      <Link
+        to="/doctor"
+        className={selected === 4 ? `material-icons active` : `material-icons`}
+        onClick={(e) => setSelected(4)}
+      >
         notifications
-      </a>
+      </Link>
       <div className="logout">
-        <a href="/" className={`material-icons ${props.logout}`}>
+        <Link
+          to="/patient"
+          className={
+            selected === 5 ? `material-icons active` : `material-icons`
+          }
+          onClick={() => setSelected(5)}
+        >
           login
-        </a>
+        </Link>
       </div>
     </div>
   );

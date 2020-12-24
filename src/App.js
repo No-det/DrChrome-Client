@@ -1,8 +1,13 @@
 import "./App.css";
-import DoctorHome from "./Components/DoctorHome";
+import NavbarContext from "./Contexts/Navbar__Context";
+import Router from "./Router";
 
 function App() {
-  return <DoctorHome />;
+  return (
+    <NavbarContext>
+      <Router />
+    </NavbarContext>
+  );
 }
 
 export default App;

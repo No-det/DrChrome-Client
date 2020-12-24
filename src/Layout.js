@@ -1,10 +1,10 @@
 import Navbar from "./Components/Navbar/Navbar";
 
-const Layout = ({ children }) => {
+const Layout = (props) => {
   return (
     <div>
       <Navbar />
-      <div style={{ marginLeft: "6vw" }}>{children}</div>
+      <div style={{ marginLeft: "6vw" }}>{props.children}</div>
     </div>
   );
 };
