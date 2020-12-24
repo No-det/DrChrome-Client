@@ -4,7 +4,10 @@ const DoctorCard = () => {
     <div className="doctors__card">
       <div className="doctors__card__left">
         <div className="doctors__card__dp">
-          <img src="#" alt="Dr. Smith" />
+          <img
+            src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg"
+            alt="Dr. Smith"
+          />
         </div>
         <div className="doctors__card__brief">
           <h3>Dr. Smith</h3>
@@ -28,7 +31,7 @@ const DoctorCard = () => {
           </tr>
         </table>
         <div className="doctors__card__appointment__button">
-          <a href="/">MAKE APPOINTMENT</a>
+          <a href="#">MAKE APPOINTMENT</a>
         </div>
       </div>
     </div>

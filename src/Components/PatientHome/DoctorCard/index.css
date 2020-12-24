@@ -59,3 +59,9 @@
   display: flex;
   align-items: center;
 }
+.doctors__card__dp img {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+}
