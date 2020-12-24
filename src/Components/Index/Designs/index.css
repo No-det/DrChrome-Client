@@ -1,10 +1,10 @@
 .shape {
-    height: 120px;
-    width: 120px;
+    height: 15vh;
+    width: 15vh;
 }
 .layer-1 {
     display: flex;
-    padding-left: 120px;
+    padding-left: 15vh;
 }
 .layer-2 {
     display: flex;
@@ -12,9 +12,31 @@
 }
 .layer-3 {
     display: flex;
-    padding-left: 120px;
+    padding-left: 15vh;
 }
 .layer-4 {
     display: flex;
-    padding-left: 240px;
+    padding-left: 30vh;
+}
+@media only screen and (max-width: 600px) {
+    .shape {
+        height: 6vh;
+        width: 6vh;
+    }
+    .layer-1 {
+        display: flex;
+        padding-left: 6vh;
+    }
+    .layer-2 {
+        display: flex;
+        padding-left: 0;
+    }
+    .layer-3 {
+        display: flex;
+        padding-left: 6vh;
+    }
+    .layer-4 {
+        display: flex;
+        padding-left: 12vh;
+    }
 }
