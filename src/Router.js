@@ -6,6 +6,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import Layout from "./Layout";
 import Signup from "./Components/Index/Signup";
 import NotFound from "./Components/404";
+import SignUp2 from "./Components/SignUp2";
 
 function Router() {
   return (
@@ -20,10 +21,11 @@ function Router() {
             </Switch>
           </Layout>
         </Route>
-        <Route path={["/", "/signup"]}>
+        <Route path={["/", "/signup", "/signup2"]}>
           <Switch>
             <Route exact path="/" component={Signin} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/signup2" component={SignUp2} />
             <Route component={NotFound} />
           </Switch>
         </Route>

@@ -1,0 +1,10 @@
+.signup2__main {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signup2__form {
+  display: flex;
+  flex-direction: column;
+}

@@ -19,10 +19,11 @@ export default function Signup() {
             <input id="email" type="email" placeholder="Enter Email" />
             <label htmlFor="password">Password</label>
             <input id="password" type="password" placeholder="Enter Password" />
-            <Link to="/doctor">
-              <input type="submit" value="Sign Up" />
+            <Link to="/signup2">
+              <input type="submit" value="Next" />
             </Link>
           </form>
+          <Link to="/signupDoctor">Signup as a Doctor</Link>
         </div>
       </div>
     </div>
