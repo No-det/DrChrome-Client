@@ -1,0 +1,103 @@
+.slotSelector {
+    width: 100%;
+}
+.monthSelector {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.monthSelector select {
+    background: #DAF4FF;
+    color: #1B79A1;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 2.7vh;
+    height: 5vh;
+    width: 18vh;
+    padding-left: 10px;
+}
+.monthSelector option {
+    font-size: 1.8vh;
+    border: none;
+    cursor: pointer;
+    background: #ffffff;
+}
+.monthSelector button {
+    height: 5vh;
+    width: 18vh;
+    border: 0.3px solid #77D6FF;
+    border-radius: 5px;
+    font-size: 2.2vh;
+    color: #1B79A1;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+}
+.daySelector {
+    display: flex;
+    align-items: center;
+    line-height: 25px;
+    border-top: 0.3px solid #B1B1B1;
+    border-bottom: 0.3px solid #B1B1B1;
+    margin-top: 1%;
+}
+.dayBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1%;
+}
+.weekSelector {
+    width: 100%;
+}
+.dayBlocks {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.daySelector span {
+    color: rgb(0,103,147,1);
+}
+.dayBlock span:nth-child(1) {
+    font-size: 1.7vh;
+    text-transform: uppercase;
+    color: black;
+}
+.dayBlock span:nth-child(2) {
+    font-size: 3.2vh;
+    font-weight: 900;
+    color: black;
+}
+.timeSelector {
+    display: flex;
+    justify-content: space-between;
+    margin: 1% 2%;
+}
+.timeBlock-passed, .timeBlock-notAvailable, .timeBlock-available, .timeBlock-selected {
+    width: 80px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vh;
+    border-radius: 5px;
+}
+
+.timeBlock-passed {
+    color: black;
+}
+.timeBlock-notAvailable {
+    color: #0072A0;
+}
+.timeBlock-available {
+    color: #0072A0;
+    background: #DAF4FF;
+}
+.timeBlock-selected {
+    color: #FFFFFF;
+    background: #009BD9;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
