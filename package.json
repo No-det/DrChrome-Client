@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.9.4",
+    "axios": "^0.21.1",
     "dayjs": "^1.9.7",
     "framer": "^1.2.12",
     "framer-motion": "^3.1.1",

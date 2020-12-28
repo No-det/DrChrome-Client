@@ -17,18 +17,20 @@ const DoctorCard = () => {
       <div className="doctors__card__right">
         <p>Unni's Hospital, New York</p>
         <table className="doctors__card__details">
-          <tr>
-            <td>Pricing</td>
-            <td>: $60 / hr</td>
-          </tr>
-          <tr>
-            <td>Available Time Slots</td>
-            <td>: 10:00-12:00, 14:00-16:00</td>
-          </tr>
-          <tr>
-            <td>Total Appointments</td>
-            <td>: 74</td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>Pricing</td>
+              <td>: $60 / hr</td>
+            </tr>
+            <tr>
+              <td>Available Time Slots</td>
+              <td>: 10:00-12:00, 14:00-16:00</td>
+            </tr>
+            <tr>
+              <td>Total Appointments</td>
+              <td>: 74</td>
+            </tr>
+          </tbody>
         </table>
         <div className="doctors__card__appointment__button">
           <a href="/">MAKE APPOINTMENT</a>
