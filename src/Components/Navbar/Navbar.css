@@ -26,6 +26,11 @@
   margin: 25% 0;
   box-shadow: inset -5px -5px 10px #00adf3, inset 5px 5px 10px #0072a0;
 }
+
+.Navbar a:hover {
+  color: white;
+}
+
 .Navbar .active {
   box-shadow: -7px -7px 14px #00adf3, 5px 5px 10px #0072a0;
 }

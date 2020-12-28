@@ -7,6 +7,7 @@ import Layout from "./Layout";
 import Signup from "./Components/Index/Signup";
 import NotFound from "./Components/404";
 import SignUp2 from "./Components/SignUp2";
+import PrivateRoute from "./Contexts/Private__Route";
 
 function Router() {
   return (
@@ -15,9 +16,9 @@ function Router() {
         <Route path={["/test", "/doctor", "/patient"]}>
           <Layout>
             <Switch>
-              <Route path="/test" component={Navbar} />
-              <Route path="/doctor" component={DoctorHome} />
-              <Route path="/patient" component={PatientHome} />
+              <PrivateRoute path="/test" component={Navbar} />
+              <PrivateRoute path="/doctor" component={DoctorHome} />
+              <PrivateRoute path="/patient" component={PatientHome} />
             </Switch>
           </Layout>
         </Route>

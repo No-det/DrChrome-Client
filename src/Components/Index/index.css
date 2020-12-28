@@ -1,109 +1,136 @@
-.signin, .signup {
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
+.signin,
+.signup {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 .portLeft {
-    background: #414141;
-    width: 45vh;
-    height: 100vh;
-    position: absolute;
+  background: #414141;
+  width: 45vh;
+  height: 100vh;
+  position: absolute;
 }
 .portDsgn {
-    position: absolute;
-    margin-left: 15vh;
-    margin-top: 10%;
+  position: absolute;
+  margin-left: 15vh;
+  margin-top: 10%;
 }
 .portContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin-left: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-left: 360px;
 }
 .portContainer form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .port h3 {
-    font-size: 36px;
-    font-weight: 600;
+  font-size: 36px;
+  font-weight: 600;
 }
 .port p {
-    color: #414141;
-    font-size: 28px;
-    padding-top: 40px;
-    padding-bottom: 10px;
+  color: #414141;
+  font-size: 28px;
+  padding-top: 40px;
+  padding-bottom: 10px;
 }
 .port label {
-    font-size: 20px;
-    font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
 }
-.port input[type="email"], .port input[type="password"] {
-    background: #F9F9F9;
-    border-radius: 4px;
-    outline: none;
-    border: none;
-    width: 450px;
-    height: 60px;
-    font-size: 20px;
-    color: #000000;
-    margin-top: 8px;
-    margin-bottom: 20px;
-    padding: 10px 40px;
+.port input[type="email"],
+.port input[type="password"] {
+  background: #f9f9f9;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  width: 450px;
+  height: 60px;
+  font-size: 20px;
+  color: #000000;
+  margin-top: 8px;
+  margin-bottom: 20px;
+  padding: 10px 40px;
 }
 .port input::placeholder {
-    color: #ACACAC;
-    font-family: Poppins;
-    font-size: 20px;
+  color: #acacac;
+  font-family: Poppins;
+  font-size: 20px;
 }
 .port input[type="submit"] {
-    background: #01D9AD;
-    color: #ffffff;
-    border-radius: 4px;
-    height: 50px;
-    width: 120px;
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: bold;
-    outline: none;
-    border: none;
-    cursor: pointer;
+  background: #01d9ad;
+  color: #ffffff;
+  border-radius: 4px;
+  height: 50px;
+  width: 120px;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.googleSignContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.googleSignContainer a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 80px;
+  border-radius: 30px;
+  width: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.googleLogo {
+  color: #01d9ad !important;
+  font-size: 40px;
 }
 
 @media only screen and (max-width: 600px) {
-    .portLeft {
-        width: 18vh;
-    }
-    .portDsgn {
-        margin-left: 6vh;
-        margin-top: 5%;
-    }
-    .portContainer {
-        margin-left: 20vh;
-    }
-    .port {
-        margin-top: 50px;
-    }
-    .port h3 {
-        font-size: 30px;
-    }
-    .port p {
-        font-size: 20px;
-    }
-    .port input[type="email"], .port input[type="password"] {
-        font-size: 15px;
-        width: 250px;
-        height: 50px;
-    }
-    .port label, .port input::placeholder {
-        font-size: 15px;
-    }
-    .port input[type="submit"] {
-        height: 40px;
-        width: 100px;
-        font-size: 15px;
-    }
+  .portLeft {
+    width: 18vh;
+  }
+  .portDsgn {
+    margin-left: 6vh;
+    margin-top: 5%;
+  }
+  .portContainer {
+    margin-left: 20vh;
+  }
+  .port {
+    margin-top: 50px;
+  }
+  .port h3 {
+    font-size: 30px;
+  }
+  .port p {
+    font-size: 20px;
+  }
+  .port input[type="email"],
+  .port input[type="password"] {
+    font-size: 15px;
+    width: 250px;
+    height: 50px;
+  }
+  .port label,
+  .port input::placeholder {
+    font-size: 15px;
+  }
+  .port input[type="submit"] {
+    height: 40px;
+    width: 100px;
+    font-size: 15px;
+  }
 }
