@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 import { GoogleOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
 import queryString from "query-string";
-
 export default function Signin(props) {
   useEffect(() => {
     const { token } = queryString.parse(props.location.search);
-    localStorage.setItem("token", token);
     if (token) {
+      sessionStorage.setItem("token", token);
       props.history.push("/patient");
     }
   }, [props.location, props.history]);
