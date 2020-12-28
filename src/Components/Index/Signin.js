@@ -9,8 +9,8 @@ import queryString from "query-string";
 export default function Signin(props) {
   useEffect(() => {
     const { token } = queryString.parse(props.location.search);
-    localStorage.setItem("token", token);
     if (token) {
+      localStorage.setItem("token", token);
       props.history.push("/patient");
     }
   }, [props.location, props.history]);

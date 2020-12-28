@@ -10,14 +10,19 @@ import NotFound from "./Components/404";
 import SignUp2 from "./Components/SignUp2";
 import PrivateRoute from "./Contexts/Private__Route";
 
+import PatientProfile from "./Components/PatientProfile";
+
 function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path={["/test", "/doctor", "/patient", "/appointment"]}>
+        <Route
+          path={["/test", "/doctor", "/patient", "/appointment", "/testing"]}
+        >
           <Layout>
             <Switch>
               <PrivateRoute path="/test" component={Navbar} />
+              <Route exact path="/testing" component={PatientProfile} />
               <PrivateRoute path="/doctor" component={DoctorHome} />
               <PrivateRoute path="/patient" component={PatientHome} />
               <PrivateRoute path="/appointment" component={Appointment} />
