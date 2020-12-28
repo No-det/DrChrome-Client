@@ -1,6 +1,7 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PatientHome from "./Components/PatientHome";
 import DoctorHome from "./Components/DoctorHome";
+import Appointment from "./Components/Appointment";
 import Signin from "./Components/Index/Signin";
 import Navbar from "./Components/Navbar/Navbar";
 import Layout from "./Layout";
@@ -13,12 +14,13 @@ function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path={["/test", "/doctor", "/patient"]}>
+        <Route path={["/test", "/doctor", "/patient", "/appointment"]}>
           <Layout>
             <Switch>
               <PrivateRoute path="/test" component={Navbar} />
               <PrivateRoute path="/doctor" component={DoctorHome} />
               <PrivateRoute path="/patient" component={PatientHome} />
+              <PrivateRoute path="/appointment" component={Appointment} />
             </Switch>
           </Layout>
         </Route>
