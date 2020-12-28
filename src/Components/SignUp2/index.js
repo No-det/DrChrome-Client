@@ -1,10 +1,35 @@
 import "./index.css";
 import { Form, Select, Button, DatePicker, Input } from "antd";
+import axios from "axios";
+import { AuthContext } from "../../Contexts/Auth__Context";
+import { useContext, useState } from "react";
+import { Redirect } from "react-router-dom";
+
 const { Option } = Select;
 
 const SignUp2 = (props) => {
-  const onFinish = ({ dob }) => {
-    console.log("Received values of form: ", dob.format("DD/MM/YYYY"));
+  const { user } = useContext(AuthContext);
+  const [uploading, setUploading] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+  const [error, setError] = useState();
+
+  const onFinish = async (values) => {
+    setUploading(true);
+    const newUser = {
+      ...user,
+      ...values,
+      dob: values.dob.format("DD/MM/YYYY"),
+    };
+    const url = "http://localhost:8000/api/addUser";
+    const response = await axios.post(url, newUser);
+    setTimeout(() => {
+      setUploading(false);
+    }, 2000);
+    if (response.statusText === "OK") {
+      setRedirect(true);
+    } else {
+      setError(response.data);
+    }
   };
 
   return (
@@ -18,11 +43,9 @@ const SignUp2 = (props) => {
           name="validate_other"
           onFinish={onFinish}
           requiredMark={false}
-          //   initialValues={{
-          //     ["input-number"]: 3,
-          //     ["checkbox-group"]: ["A", "B"],
-          //     rate: 3.5,
-          //   }}
+          // initialValues={{
+          //   name: user.firstName,
+          // }}
         >
           <Form.Item
             name="name"
@@ -105,7 +128,6 @@ const SignUp2 = (props) => {
             rules={[
               {
                 required: true,
-                message: "Please Enter Your Date of Birth",
               },
             ]}
           >
@@ -173,13 +195,14 @@ const SignUp2 = (props) => {
               offset: 6,
             }}
           >
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" loading={uploading}>
               Submit
             </Button>
           </Form.Item>
         </Form>
-        <a href="http://localhost:8000/auth/google">Sign in with Google</a>
+        {error && <h1 style={{ color: "red" }}>{error}</h1>}
       </div>
+      {redirect && <Redirect to="/patient" />}
     </div>
   );
 };
