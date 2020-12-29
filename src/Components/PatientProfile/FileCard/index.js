@@ -1,6 +1,6 @@
 import "./index.css";
 
-import { Icon, InlineIcon } from "@iconify/react";
+import { Icon } from "@iconify/react";
 import cloudDownloadOutlined from "@iconify/icons-bx/bx-cloud-download";
 
 const FileCard = () => {

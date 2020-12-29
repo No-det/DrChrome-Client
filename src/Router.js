@@ -22,7 +22,7 @@ function Router() {
           <Layout>
             <Switch>
               <PrivateRoute path="/test" component={Navbar} />
-              <Route exact path="/testing" component={PatientProfile} />
+              <PrivateRoute exact path="/testing" component={PatientProfile} />
               <PrivateRoute path="/doctor" component={DoctorHome} />
               <PrivateRoute path="/patient" component={PatientHome} />
               <PrivateRoute path="/appointment" component={Appointment} />

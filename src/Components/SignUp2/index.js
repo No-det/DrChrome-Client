@@ -19,6 +19,7 @@ const SignUp2 = (props) => {
       ...user,
       ...values,
       dob: values.dob.format("DD/MM/YYYY"),
+      isVerified: true,
     };
     const url = "http://localhost:8000/api/addUser";
     const response = await axios.post(url, newUser);

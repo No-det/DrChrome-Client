@@ -5,8 +5,12 @@ import bxSearch from "@iconify/icons-bx/bx-search";
 
 import imageMain from "../../assets/patient-home.svg";
 import DoctorCard from "./DoctorCard";
+import { AuthContext } from "../../Contexts/Auth__Context";
+import { useContext } from "react";
 
 const PatientHome = (props) => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="patient__container">
       <div className="patient__greeting">
@@ -31,11 +35,17 @@ const PatientHome = (props) => {
           <div className="patient__appointment__history">
             <p>Appointment History</p>
           </div>
-          <div className="patient__next__appointment">
-            <h3>Your Next Appointment</h3>
-            <p>22 December 2020</p>
-            <p>11:00 - 11:30</p>
-          </div>
+          {user && user.isVerified ? (
+            <div className="patient__next__appointment">
+              <h3>Your Next Appointment</h3>
+              <p>22 December 2020</p>
+              <p>11:00 - 11:30</p>
+            </div>
+          ) : (
+            <div className="patient__next__appointment">
+              <h3>Verify your details to make appointment</h3>
+            </div>
+          )}
         </div>
         <div className="patient__header__right">
           <div className="patient__dp">
