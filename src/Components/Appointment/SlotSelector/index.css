@@ -49,6 +49,7 @@
     justify-content: center;
     align-items: center;
     padding: 1%;
+    cursor: pointer;
 }
 .weekSelector {
     width: 100%;
@@ -60,6 +61,7 @@
 }
 .daySelector span {
     color: rgb(0,103,147,1);
+    cursor: pointer;
 }
 .dayBlock span:nth-child(1) {
     font-size: 1.7vh;
@@ -70,6 +72,9 @@
     font-size: 3.2vh;
     font-weight: 900;
     color: black;
+}
+.selected span:nth-child(1), .selected span:nth-child(2) {
+    color: #009BD9;
 }
 .timeSelector {
     display: flex;
@@ -96,8 +101,12 @@
     color: #0072A0;
     background: #DAF4FF;
 }
-.timeBlock-selected {
+.timeBlock-selected, .timeBlock-notAvailable:hover, .timeBlock-available:hover, .timeBlock-selected:hover {
     color: #FFFFFF;
+    cursor: pointer;
     background: #009BD9;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+.timeBlock-passed:hover {
+    cursor: not-allowed;
 }

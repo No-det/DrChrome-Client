@@ -5,11 +5,12 @@ export default function AppointmentForm () {
         <div className="apt-form">
             <h3>Appointment Form</h3>
             <label>What is the reason for your appointment ?</label><br />
-            <textarea></textarea><br /><br />
+            <textarea rows="5"></textarea><br /><br />
             <label>Symptoms (if any)</label><br />
-            <textarea></textarea><br /><br />
+            <textarea rows="5"></textarea><br /><br />
             <label>Attach Documents (if any)</label><br />
-            <input type="file" />
+            <input type="file" /><br /><br />
+            <button>Make Appointment</button>
         </div>
     );
 }

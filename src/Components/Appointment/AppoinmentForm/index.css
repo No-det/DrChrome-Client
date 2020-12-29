@@ -1,0 +1,32 @@
+.apt-form {
+    width: 100%;
+    padding-left: 15%;
+}
+.apt-form h3 {
+    font-size: 28px;
+}
+.apt-form label {
+    font-size: 18px;
+}
+.apt-form textarea {
+    background: #FFFFFF;
+    border: 0.5px solid #C7BFBF;
+    resize: none;
+    width: 85%;
+    border-radius: 7px;
+    outline: none;
+    padding: 2%;
+}
+.apt-form button {
+    /* bottom: 10px; */
+    padding: 15px;
+    width: 85%;
+    /* position: fixed; */
+    border: none;
+    background: #01D9AD;
+    color: #203833;
+    font-size: 16px;
+    border-radius: 6px;
+    height: fit-content;
+    margin-top: 50px;
+}
