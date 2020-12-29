@@ -1,0 +1,24 @@
+.patientprofile__appointmentsdetail {
+  margin: 5px;
+  border-radius: 7px;
+  display: flex;
+  padding: 20px 30px;
+  background-color: white;
+  justify-content: space-around;
+  align-items: center;
+}
+.patientprofile__appointmenttime h5 {
+  font-size: 18px;
+}
+.patientprofile__appointmenttime p {
+  font-size: 16px;
+}
+.patientprofile__doctor,
+.patientprofile__type {
+  font-weight: 500;
+  font-size: 16px;
+}
+.patientprofile__notes a {
+  font-weight: 500;
+  font-size: 16px;
+}

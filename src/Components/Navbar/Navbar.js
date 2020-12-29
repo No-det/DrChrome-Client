@@ -9,21 +9,21 @@ export default function Navbar(props) {
   return (
     <div className="Navbar">
       <Link
-        to="/"
+        to="/doctor"
         className={selected === 1 ? `material-icons active` : `material-icons`}
         onClick={() => setSelected(1)}
       >
         home
       </Link>
       <Link
-        to="/"
+        to="/appointment"
         className={selected === 2 ? `material-icons active` : `material-icons`}
         onClick={() => setSelected(2)}
       >
         settings
       </Link>
       <Link
-        to="/"
+        to="/patient"
         className={selected === 3 ? `material-icons active` : `material-icons`}
         onClick={() => setSelected(3)}
       >
@@ -36,9 +36,12 @@ export default function Navbar(props) {
       >
         notifications
       </Link>
-      <div className="logout">
+      <div
+        className="logout"
+        onClick={() => sessionStorage.removeItem("token")}
+      >
         <Link
-          to="/patient"
+          to="/"
           className={
             selected === 5 ? `material-icons active` : `material-icons`
           }

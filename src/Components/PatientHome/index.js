@@ -6,7 +6,7 @@ import bxSearch from "@iconify/icons-bx/bx-search";
 import imageMain from "../../assets/patient-home.svg";
 import DoctorCard from "./DoctorCard";
 
-const PatientHome = () => {
+const PatientHome = (props) => {
   return (
     <div className="patient__container">
       <div className="patient__greeting">
