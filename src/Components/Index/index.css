@@ -82,6 +82,10 @@
   margin-top: 20px;
 }
 
+.googleSignContainer p {
+  padding-top: 0;
+}
+
 .googleSignContainer a {
   text-decoration: none;
   display: flex;
