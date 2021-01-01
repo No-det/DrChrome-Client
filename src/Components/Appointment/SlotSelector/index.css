@@ -6,23 +6,21 @@
     width: 100%;
     justify-content: space-between;
 }
-.monthSelector select {
+.monthSelector .monthSlot {
     background: #DAF4FF;
     color: #1B79A1;
-    outline: none;
-    border: none;
     cursor: pointer;
     border-radius: 5px;
+    outline: none;
+    border: none;
     font-size: 2.7vh;
     height: 5vh;
-    width: 18vh;
-    padding-left: 10px;
-}
-.monthSelector option {
-    font-size: 1.8vh;
-    border: none;
-    cursor: pointer;
-    background: #ffffff;
+    width: fit-content;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .monthSelector button {
     height: 5vh;
@@ -53,10 +51,12 @@
 }
 .weekSelector {
     width: 100%;
+    margin-top: 20px;
 }
 .dayBlocks {
     display: flex;
     width: 100%;
+    margin: 0% 5%;
     justify-content: space-between;
 }
 .daySelector span {
@@ -82,15 +82,45 @@
     margin: 1% 2%;
 }
 .timeBlock-passed, .timeBlock-notAvailable, .timeBlock-available, .timeBlock-selected {
-    width: 80px;
-    height: 35px;
+    width: 10vh;
+    height: 4vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2vh;
     border-radius: 5px;
+    margin-top: 15px;
 }
-
+.slot-dtls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slot-dtls p {
+    height: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8vh;
+    font-weight: 600;
+    border: 1px solid #1B79A1;
+}
+.slot-dtls p:nth-child(1) {
+    width: 12vh;
+    background-color: #1B79A1;
+    color: white;
+    /* padding-left: 10px; */
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.slot-dtls p:nth-child(2) {
+    color: #1B79A1;
+    width: fit-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 .timeBlock-passed {
     color: black;
 }
