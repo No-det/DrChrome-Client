@@ -49,6 +49,7 @@ export default function AppointmentForm() {
               message: "Please enter the reason for your appointment: ",
             },
           ]}
+          style={{ marginBottom: 40 }}
         >
           <Input.TextArea placeholder="Enter Your Reason" allowClear rows={5} />
         </Form.Item>
@@ -62,6 +63,7 @@ export default function AppointmentForm() {
               message: "Please Enter Your Symptoms",
             },
           ]}
+          style={{ marginBottom: 40 }}
         >
           <Input.TextArea
             placeholder="Enter Your Symptoms"
@@ -74,6 +76,7 @@ export default function AppointmentForm() {
           label="Upload any documents: "
           valuePropName="fileList"
           getValueFromEvent={normFile}
+          style={{ marginTop: 30 }}
         >
           <Upload name="logo" action="/upload.do" listType="picture">
             <Button icon={<UploadOutlined />}>Click to upload</Button>
@@ -86,7 +89,12 @@ export default function AppointmentForm() {
             offset: 6,
           }}
         >
-          <Button type="primary" htmlType="submit" loading={uploading}>
+          <Button
+            style={{ marginTop: 40 }}
+            type="primary"
+            htmlType="submit"
+            loading={uploading}
+          >
             Submit
           </Button>
         </Form.Item>
