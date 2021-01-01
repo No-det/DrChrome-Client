@@ -1,5 +1,5 @@
 import "./index.css";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { weekday, getWeek, getMonth } from "./app";
 
 
@@ -10,9 +10,19 @@ export default function SlotSelector () {
     const [slotDate, setslotDate] = useState(new Date());
     const [slotWeek, setslotWeek] = useState(getWeek());
 
+    useEffect(() => {
+        localStorage.setItem(
+            "slotTime",
+            new Date(`${getMonth[slotDate.getMonth()]} ${slotDate.getDate()}, ${slotDate.getFullYear()} ${slotTime}`)
+        )
+        return () => {
+            // 
+        }
+    }, [slotDate, slotTime])
+
     return <div className="slotSelector">
         <div className="monthSelector">
-            <div className="monthSlot">{getMonth[slotWeek[3].getMonth()]}</div>
+            <div className="monthSlot">{getMonth[slotDate.getMonth()]}</div>
             <div className="slot-dtls">
                 <p>{slotDate.getDate()} - {slotDate.getMonth() + 1} - {slotDate.getFullYear()}</p>
                 <p>{slotTime}</p>
@@ -74,6 +84,8 @@ export default function SlotSelector () {
                 </div>
             </div>
             <div className="timeSelector">
+
+
                 <div className="dayTimeBlock">
                     <p 
                         className={(slotDate.getDate() === slotWeek[0].getDate() && slotTime === "10:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
@@ -106,12 +118,219 @@ export default function SlotSelector () {
                             02:00 AM
                     </p>
                 </div>
-                <div className="dayTimeBlock"><p className="timeBlock-available">--</p></div>
-                <div className="dayTimeBlock"><p className="timeBlock-available">--</p></div>
-                <div className="dayTimeBlock"><p className="timeBlock-available">--</p></div>
-                <div className="dayTimeBlock"><p className="timeBlock-available">--</p></div>
-                <div className="dayTimeBlock"><p className="timeBlock-available">--</p></div>
-                <div className="dayTimeBlock"><p className="timeBlock-available">--</p></div>
+
+
+
+                <div className="dayTimeBlock">
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[1].getDate() && slotTime === "10:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('10:00 AM'); setslotDate(slotWeek[1]); } }
+                    >
+                            10:00 AM
+                    </p>
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[1].getDate() && slotTime === "11:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('11:00 AM'); setslotDate(slotWeek[1]); } }
+                    >
+                            11:00 AM
+                    </p>
+                    <p 
+                        className="timeBlock-notAvailable"
+                        onClick={() => alert("Time Slot not Available")}
+                    >
+                            12:00 AM
+                    </p>
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[1].getDate() && slotTime === "01:00 PM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('01:00 PM'); setslotDate(slotWeek[1]); } }
+                    >
+                            01:00 PM
+                    </p>
+                    <p 
+                        className="timeBlock-notAvailable"
+                        onClick={() => alert("Time Slot not Available")}
+                    >
+                            02:00 AM
+                    </p>
+                </div>
+    
+
+
+                <div className="dayTimeBlock">
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[2].getDate() && slotTime === "10:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('10:00 AM'); setslotDate(slotWeek[2]); } }
+                    >
+                            10:00 AM
+                    </p>
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[2].getDate() && slotTime === "11:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('11:00 AM'); setslotDate(slotWeek[2]); } }
+                    >
+                            11:00 AM
+                    </p>
+                    <p 
+                        className="timeBlock-notAvailable"
+                        onClick={() => alert("Time Slot not Available")}
+                    >
+                            12:00 AM
+                    </p>
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[2].getDate() && slotTime === "01:00 PM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('01:00 PM'); setslotDate(slotWeek[2]); } }
+                    >
+                            01:00 PM
+                    </p>
+                    <p 
+                        className="timeBlock-notAvailable"
+                        onClick={() => alert("Time Slot not Available")}
+                    >
+                            02:00 AM
+                    </p>
+                </div>
+
+
+
+                <div className="dayTimeBlock">
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[3].getDate() && slotTime === "10:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('10:00 AM'); setslotDate(slotWeek[3]); } }
+                    >
+                            10:00 AM
+                    </p>
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[3].getDate() && slotTime === "11:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('11:00 AM'); setslotDate(slotWeek[3]); } }
+                    >
+                            11:00 AM
+                    </p>
+                    <p 
+                        className="timeBlock-notAvailable"
+                        onClick={() => alert("Time Slot not Available")}
+                    >
+                            12:00 AM
+                    </p>
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[3].getDate() && slotTime === "01:00 PM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('01:00 PM'); setslotDate(slotWeek[3]); } }
+                    >
+                            01:00 PM
+                    </p>
+                    <p 
+                        className="timeBlock-notAvailable"
+                        onClick={() => alert("Time Slot not Available")}
+                    >
+                            02:00 AM
+                    </p>
+                </div>
+
+
+
+                <div className="dayTimeBlock">
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[4].getDate() && slotTime === "10:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('10:00 AM'); setslotDate(slotWeek[4]); } }
+                    >
+                            10:00 AM
+                    </p>
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[4].getDate() && slotTime === "11:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('11:00 AM'); setslotDate(slotWeek[4]); } }
+                    >
+                            11:00 AM
+                    </p>
+                    <p 
+                        className="timeBlock-notAvailable"
+                        onClick={() => alert("Time Slot not Available")}
+                    >
+                            12:00 AM
+                    </p>
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[4].getDate() && slotTime === "01:00 PM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('01:00 PM'); setslotDate(slotWeek[4]); } }
+                    >
+                            01:00 PM
+                    </p>
+                    <p 
+                        className="timeBlock-notAvailable"
+                        onClick={() => alert("Time Slot not Available")}
+                    >
+                            02:00 AM
+                    </p>
+                </div>
+
+
+
+                <div className="dayTimeBlock">
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[5].getDate() && slotTime === "10:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('10:00 AM'); setslotDate(slotWeek[5]); } }
+                    >
+                            10:00 AM
+                    </p>
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[5].getDate() && slotTime === "11:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('11:00 AM'); setslotDate(slotWeek[5]); } }
+                    >
+                            11:00 AM
+                    </p>
+                    <p 
+                        className="timeBlock-notAvailable"
+                        onClick={() => alert("Time Slot not Available")}
+                    >
+                            12:00 AM
+                    </p>
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[5].getDate() && slotTime === "01:00 PM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('01:00 PM'); setslotDate(slotWeek[5]); } }
+                    >
+                            01:00 PM
+                    </p>
+                    <p 
+                        className="timeBlock-notAvailable"
+                        onClick={() => alert("Time Slot not Available")}
+                    >
+                            02:00 AM
+                    </p>
+                </div>
+
+
+
+                <div className="dayTimeBlock">
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[6].getDate() && slotTime === "10:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('10:00 AM'); setslotDate(slotWeek[6]); } }
+                    >
+                            10:00 AM
+                    </p>
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[6].getDate() && slotTime === "11:00 AM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('11:00 AM'); setslotDate(slotWeek[6]); } }
+                    >
+                            11:00 AM
+                    </p>
+                    <p 
+                        className="timeBlock-notAvailable"
+                        onClick={() => alert("Time Slot not Available")}
+                    >
+                            12:00 AM
+                    </p>
+                    <p 
+                        className={(slotDate.getDate() === slotWeek[6].getDate() && slotTime === "01:00 PM") ? "timeBlock-selected" : "timeBlock-available"} 
+                        onClick={() => {setslotTime('01:00 PM'); setslotDate(slotWeek[6]); } }
+                    >
+                            01:00 PM
+                    </p>
+                    <p 
+                        className="timeBlock-notAvailable"
+                        onClick={() => alert("Time Slot not Available")}
+                    >
+                            02:00 AM
+                    </p>
+                </div>
+
+
+                
             </div>
         </div>
     </div>
