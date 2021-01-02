@@ -1,84 +1,89 @@
 .apt {
-    font-family: Poppins;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100%;
+  font-family: Poppins;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
 }
 .apt-docContainer {
-    height: 100%;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-right: 2%;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 2%;
 }
 .apt-formContainer {
-    height: 100%;
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-left: 1px solid #000000;
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #000000;
 }
 
 .apt-docCard {
-    background: #DAF4FF;
-    border-radius: 8px;
-    height: fit-content;
-    width: fit-content;
-    padding: 2%;
-    padding-right: 3%;
+  background: #daf4ff;
+  border-radius: 8px;
+  height: fit-content;
+  width: fit-content;
+  padding: 2%;
+  padding-right: 3%;
 }
 .apt-docCard-id img {
-    height: 120px;
-    width: 120px;
-    border-radius: 100px;
+  height: 120px;
+  width: 120px;
+  border-radius: 100px;
 }
 .apt-docCard-id {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .apt-docCard-id-txt {
-    line-height: 20px;
-    margin-left: 20px;
+  line-height: 20px;
+  margin-left: 20px;
 }
 .apt-docCard-id-txt h3 {
-    color: #006793;
-    font-size: 3.4vh;
+  color: #006793;
+  font-size: 3.4vh;
 }
 .apt-docCard-id-txt h4 {
-    color: #6198B0;
-    font-size: 1.9vh;
+  color: #6198b0;
+  font-size: 1.9vh;
 }
 .apt-docCard-id-txt p {
-    color: #A2BFCB;
-    font-size: 1.3vh;
-    line-height: 12px;
+  color: #a2bfcb;
+  font-size: 1.3vh;
+  line-height: 12px;
 }
 .apt-docCard-dtls {
-    padding-left: 5%;
-    padding-top: 5%;
+  padding-left: 5%;
+  padding-top: 5%;
 }
 .apt-docCard-dtl {
-    display: flex;
-    line-height: 20px;
+  display: flex;
+  line-height: 20px;
 }
+
+.apt-docCard-dtl p {
+  margin-bottom: 10px;
+}
+
 .apt-docCard-dtl p:nth-child(odd) {
-    font-size: 1.7vh;
-    color: rgba(0, 130, 185, 0.7);
+  font-size: 1.7vh;
+  color: rgba(0, 130, 185, 0.7);
 }
 .apt-docCard-dtl p:nth-child(even) {
-    font-size: 2vh;
-    color: #006793;
-    font-weight: 600;
-    padding-left: 25px;
+  font-size: 2vh;
+  color: #006793;
+  font-weight: 600;
+  padding-left: 25px;
 }
 .apt-slotSelector {
-    width: 100%;
-    padding-left: 5%;
-    padding-top: 5%;
+  width: 100%;
+  padding-left: 5%;
+  padding-top: 5%;
 }
