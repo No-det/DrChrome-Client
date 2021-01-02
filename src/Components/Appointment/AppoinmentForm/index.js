@@ -2,11 +2,14 @@ import { Button, Form, Input, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import "./index.css";
 import { useState } from "react";
+import axios from "axios";
+
+const url = "http://localhost:8000/api/appoinment/5feacbc9efb08a7cd541036f";
 
 export default function AppointmentForm() {
   const [uploading, setUploading] = useState(false);
-  // const [redirect, setRedirect] = useState(false);
-  // const [error, setError] = useState();
+  const [reason, setReason] = useState("");
+  const [symptoms, setSymptoms] = useState("");
 
   const onFinish = async (values) => {
     console.log(values);
@@ -18,6 +21,17 @@ export default function AppointmentForm() {
       return e;
     }
     return e && e.fileList;
+  };
+
+  const createAppoinment = () => {
+    let data = {
+      doctorID: "5feb386a44ae600aecd5bb0f",
+      reason: reason,
+      symptoms: symptoms,
+      time: localStorage.getItem("slotTime"),
+    };
+    console.log(data);
+    axios.post(url, data);
   };
 
   return (
@@ -51,7 +65,12 @@ export default function AppointmentForm() {
           ]}
           style={{ marginBottom: 40 }}
         >
-          <Input.TextArea placeholder="Enter Your Reason" allowClear rows={5} />
+          <Input.TextArea
+            placeholder="Enter Your Reason"
+            allowClear
+            rows={5}
+            onChange={(e) => setReason(e.target.value)}
+          />
         </Form.Item>
         <Form.Item
           name="Symptoms"
@@ -69,6 +88,7 @@ export default function AppointmentForm() {
             placeholder="Enter Your Symptoms"
             allowClear
             rows={5}
+            onChange={(e) => setSymptoms(e.target.value)}
           />
         </Form.Item>
         <Form.Item
@@ -90,10 +110,10 @@ export default function AppointmentForm() {
           }}
         >
           <Button
-            style={{ marginTop: 40 }}
             type="primary"
             htmlType="submit"
             loading={uploading}
+            onClick={createAppoinment}
           >
             Submit
           </Button>
