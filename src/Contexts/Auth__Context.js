@@ -6,30 +6,35 @@ export const AuthContext = createContext();
 const Auth__contextProvider = (props) => {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
   const [user, setUser] = useState({});
-  const [isVerified, setIsVerified] = useState(false);
-
 
   useEffect(() => {
     const newToken = sessionStorage.getItem("token");
     if (newToken) {
       setToken(newToken);
-      const url = "http://localhost:8000/auth/user";
-      axios
-        .get(url, {
-          headers: {
-            token: token,
-          },
-        })
-        .then(({ data }) => {
-          const { user } = data.user;
-          setUser(user);
-        })
-        .catch((err) => console.log(err));
     }
-  }, [window.location.href]);
+    const url = "http://localhost:8000/auth/user";
+    axios
+      .get(url, {
+        headers: {
+          token: token,
+        },
+      })
+      .then(({ data }) => {
+        const { user } = data.user;
+        setUser(user);
+      })
+      .catch((err) => console.log(err));
+  }, [token]);
+
+  const changeUser = (token) => {
+    sessionStorage.setItem("token", token);
+    setToken(token);
+  };
 
   return (
-    <AuthContext.Provider value={{ token, setIsVerified, user }}>
+    <AuthContext.Provider
+      value={{ token, user, setUser, setToken, changeUser }}
+    >
       {props.children}
     </AuthContext.Provider>
   );

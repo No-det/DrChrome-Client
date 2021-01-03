@@ -3,14 +3,20 @@ import "./index.css";
 import Design from "./Designs/design";
 import { Link } from "react-router-dom";
 import { GoogleOutlined } from "@ant-design/icons";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import queryString from "query-string";
+import { AuthContext } from "../../Contexts/Auth__Context";
+
 export default function Signin(props) {
-  useEffect(() => {
+  const { user } = useContext(AuthContext);
+  useEffect(async () => {
     const { token } = queryString.parse(props.location.search);
     if (token) {
       sessionStorage.setItem("token", token);
-      props.history.push("/patient");
+      console.log(typeof user);
+      user.isDoctor
+        ? props.history.push("/doctor")
+        : props.history.push("/patient");
     }
   }, [props.location, props.history]);
 
