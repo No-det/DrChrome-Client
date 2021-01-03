@@ -35,7 +35,7 @@ function Router() {
             <Route exact path="/" component={Signin} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/signup2" component={SignUp2} />
-            <Route exact path="/isDoctor/" component={Divider} />
+            <PrivateRoute exact path="/isDoctor/" component={Divider} />
             <Route component={NotFound} />
           </Switch>
         </Route>
