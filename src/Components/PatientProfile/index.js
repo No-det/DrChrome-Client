@@ -35,7 +35,7 @@ const PatientProfile = () => {
                 </div>
                 <div className="patientprofile__appointments">
                   <h4>
-                    Appointments: <span>2</span>
+                    Appointments: <span>{(user.appointments && user.appointments.length !== 0) ? user.appointments.length : 0 }</span>
                   </h4>
                 </div>
                 <Link className="patientprofile__editprofile" to="/signup2">
@@ -45,15 +45,15 @@ const PatientProfile = () => {
               <div className="patientprofile__details">
                 <div className="patientprofile__detail">
                   <h5>Gender</h5>
-                  <p>{user.gender}</p>
+                  <p style={{textTransform: "capitalize"}}>{user?.gender}</p>
                 </div>
                 <div className="patientprofile__detail">
                   <h5>Birthday</h5>
-                  <p>03/12/1999</p>
+                  <p>{new Date(user?.dob).toDateString().slice(4, new Date(user?.dob).toDateString().length)}</p>
                 </div>
                 <div className="patientprofile__detail">
                   <h5>Phone Number</h5>
-                  <p>{user.phone}</p>
+                  <p>{user?.phone}</p>
                 </div>
                 <div className="patientprofile__detail">
                   <h5>Street Address</h5>
@@ -61,23 +61,23 @@ const PatientProfile = () => {
                 </div>
                 <div className="patientprofile__detail">
                   <h5>City</h5>
-                  <p>San Deigo</p>
+                  <p>{user?.city}</p>
                 </div>
                 <div className="patientprofile__detail">
                   <h5>Zip Code</h5>
-                  <p>888888</p>
+                  <p>{user?.zip}</p>
                 </div>
                 <div className="patientprofile__detail">
                   <h5>Registered Date</h5>
-                  <p>23 December, 2020</p>
+                  <p>{new Date(user?.joined).toDateString().slice(4, new Date(user?.joined).toDateString().length)}</p>
                 </div>
                 <div className="patientprofile__detail">
                   <h5>Last Updated</h5>
-                  <p>24 December, 2020</p>
+                  <p>{new Date(user?.joined).toDateString().slice(4, new Date(user?.joined).toDateString().length)}</p>
                 </div>
                 <div className="patientprofile__detail">
                   <h5>Blood Group</h5>
-                  <p>{user.blood}</p>
+                  <p style={{textTransform: "capitalize"}}>{user.blood}</p>
                 </div>
               </div>
             </div>
@@ -97,6 +97,18 @@ const PatientProfile = () => {
                 </span>
               </div>
               <div className="patientprofile__appointmentsdetails">
+              {
+                  (user.appointments && user.appointments.length !== 0) ? 
+                    nav === 0 ?
+                    user.appointments.map(appointment =>
+                      appointment.status !== "pending" ? <AppointmentCard appointment={appointment} /> : null
+                    ) :
+                    user.appointments.map(appointment =>
+                      appointment.status === "pending" ? <AppointmentCard appointment={appointment} /> : null
+                    )
+                  : null
+                }
+                {/* <AppointmentCard />
                 <AppointmentCard />
                 <AppointmentCard />
                 <AppointmentCard />
@@ -110,8 +122,7 @@ const PatientProfile = () => {
                 <AppointmentCard />
                 <AppointmentCard />
                 <AppointmentCard />
-                <AppointmentCard />
-                <AppointmentCard />
+                <AppointmentCard /> */}
               </div>
             </div>
           </div>

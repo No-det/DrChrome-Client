@@ -6,6 +6,8 @@ export const AuthContext = createContext();
 const Auth__contextProvider = (props) => {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
   const [user, setUser] = useState({});
+  const [isVerified, setIsVerified] = useState(false);
+
 
   useEffect(() => {
     const newToken = sessionStorage.getItem("token");
@@ -24,10 +26,10 @@ const Auth__contextProvider = (props) => {
         })
         .catch((err) => console.log(err));
     }
-  }, [token]);
+  }, [window.location.href]);
 
   return (
-    <AuthContext.Provider value={{ token, user }}>
+    <AuthContext.Provider value={{ token, setIsVerified, user }}>
       {props.children}
     </AuthContext.Provider>
   );

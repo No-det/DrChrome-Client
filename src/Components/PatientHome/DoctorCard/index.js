@@ -1,16 +1,16 @@
 import "./index.css";
-const DoctorCard = () => {
+const DoctorCard = (props) => {
   return (
     <div className="doctors__card">
       <div className="doctors__card__left">
         <div className="doctors__card__dp">
           <img
-            src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg"
+            src= {props.doctor ? props.doctor.image : "https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg"}
             alt="Dr. Smith"
           />
         </div>
         <div className="doctors__card__brief">
-          <h3>Dr. Smith</h3>
+          <h3>{props.doctor ? props.doctor.name : "Dr. Smith" }</h3>
           <p>Pediatrician</p>
         </div>
       </div>
@@ -33,7 +33,7 @@ const DoctorCard = () => {
           </tbody>
         </table>
         <div className="doctors__card__appointment__button">
-          <a href="/">MAKE APPOINTMENT</a>
+          <a href="/appointment/">MAKE APPOINTMENT</a>
         </div>
       </div>
     </div>

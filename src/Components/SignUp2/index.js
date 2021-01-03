@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 const { Option } = Select;
 
 const SignUp2 = (props) => {
-  const { user } = useContext(AuthContext);
+  const { setIsVerified, user } = useContext(AuthContext);
   const [uploading, setUploading] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState();
@@ -28,6 +28,7 @@ const SignUp2 = (props) => {
     }, 2000);
     if (response.statusText === "OK") {
       setRedirect(true);
+      setIsVerified(true);
     } else {
       setError(response.data);
     }
