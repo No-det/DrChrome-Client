@@ -1,15 +1,20 @@
 import { Button, Form, Input, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import "./index.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../../Contexts/Auth__Context";
 import axios from "axios";
+import { Redirect } from "react-router-dom"
 
-const url = "http://localhost:8000/api/appoinment/5feacbc9efb08a7cd541036f";
 
-export default function AppointmentForm() {
+export default function AppointmentForm(props) {
   const [uploading, setUploading] = useState(false);
   const [reason, setReason] = useState("");
   const [symptoms, setSymptoms] = useState("");
+  const { user } = useContext(AuthContext);
+  const [redirect, setRedirect] = useState(false)
+  const url = `http://localhost:8000/api/appoinment/${user._id}`;
+
 
   const onFinish = async (values) => {
     console.log(values);
@@ -23,27 +28,20 @@ export default function AppointmentForm() {
     return e && e.fileList;
   };
 
-  const createAppoinment = () => {
+  const createAppoinment = async () => {
     let data = {
       doctorID: "5feb386a44ae600aecd5bb0f",
       reason: reason,
       symptoms: symptoms,
       time: localStorage.getItem("slotTime"),
     };
-    console.log(data);
-    axios.post(url, data);
+    let res = await axios.post(url, data);
+    if (res.status == 200) setRedirect(true);
   };
 
   return (
+    redirect ? <Redirect to="/patient/" /> :
     <div className="apt-form">
-      {/* <h3>Appointment Form</h3>
-            <label>What is the reason for your appointment ?</label><br />
-            <textarea rows="5"></textarea><br /><br />
-            <label>Symptoms (if any)</label><br />
-            <textarea rows="5"></textarea><br /><br />
-            <label>Attach Documents (if any)</label><br />
-            <input type="file" /><br /><br />
-            <button>Make Appointment</button> */}
       <Form
         name="validate_other"
         onFinish={onFinish}

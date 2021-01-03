@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 const { Option } = Select;
 
 const SignUp2 = (props) => {
-  const { user, setUser, setToken } = useContext(AuthContext);
+  const { user, setToken } = useContext(AuthContext);
   const [uploading, setUploading] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState();
