@@ -1,6 +1,6 @@
 import "./index.css";
 
-import Design1 from "./Designs/design";
+import Design from "./Designs/design";
 import { Link } from "react-router-dom";
 import { GoogleOutlined } from "@ant-design/icons";
 import { useEffect } from "react";
@@ -18,7 +18,7 @@ export default function Signin(props) {
     <div className="signin">
       <div className="portLeft"></div>
       <div className="portDsgn">
-        <Design1 dsgn="signin" />
+        <Design dsgn="signin" />
       </div>
       <div className="portContainer">
         <div className="port">

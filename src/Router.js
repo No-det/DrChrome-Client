@@ -6,6 +6,7 @@ import Signin from "./Components/Index/Signin";
 import Navbar from "./Components/Navbar/Navbar";
 import Layout from "./Layout";
 import Signup from "./Components/Index/Signup";
+import Divider from "./Components/Index/Divider";
 import NotFound from "./Components/404";
 import SignUp2 from "./Components/SignUp2";
 import PrivateRoute from "./Contexts/Private__Route";
@@ -29,11 +30,12 @@ function Router() {
             </Switch>
           </Layout>
         </Route>
-        <Route path={["/", "/signup", "/signup2"]}>
+        <Route path={["/", "/signup", "/signup2", "/isDoctor/"]}>
           <Switch>
             <Route exact path="/" component={Signin} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/signup2" component={SignUp2} />
+            <Route exact path="/isDoctor/" component={Divider} />
             <Route component={NotFound} />
           </Switch>
         </Route>
