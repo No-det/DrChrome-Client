@@ -11,23 +11,23 @@ const Auth__contextProvider = (props) => {
     const newToken = sessionStorage.getItem("token");
     if (newToken) {
       setToken(newToken);
-      const url = "http://localhost:8000/auth/user";
-      axios
-        .get(url, {
-          headers: {
-            token: token,
-          },
-        })
-        .then(({ data }) => {
-          const { user } = data.user;
-          setUser(user);
-        })
-        .catch((err) => console.log(err));
     }
+    const url = "http://localhost:8000/auth/user";
+    axios
+      .get(url, {
+        headers: {
+          token: token,
+        },
+      })
+      .then(({ data }) => {
+        const { user } = data.user;
+        setUser(user);
+      })
+      .catch((err) => console.log(err));
   }, [token]);
 
   return (
-    <AuthContext.Provider value={{ token, user }}>
+    <AuthContext.Provider value={{ token, user, setUser, setToken }}>
       {props.children}
     </AuthContext.Provider>
   );

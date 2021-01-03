@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 const { Option } = Select;
 
 const SignUp2 = (props) => {
-  const { user } = useContext(AuthContext);
+  const { user, setUser, setToken } = useContext(AuthContext);
   const [uploading, setUploading] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState();
@@ -18,7 +18,7 @@ const SignUp2 = (props) => {
     const newUser = {
       ...user,
       ...values,
-      dob: values.dob.format("DD/MM/YYYY"),
+      dob: new Date(values.dob.format("DD/MM/YYYY")),
       isVerified: true,
     };
     const url = "http://localhost:8000/api/addUser";
@@ -27,6 +27,8 @@ const SignUp2 = (props) => {
       setUploading(false);
     }, 2000);
     if (response.statusText === "OK") {
+      sessionStorage.setItem("token", response.data.token);
+      setToken(response.data.token);
       setRedirect(true);
     } else {
       setError(response.data);
