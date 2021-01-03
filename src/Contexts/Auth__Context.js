@@ -8,7 +8,6 @@ const Auth__contextProvider = (props) => {
   const [user, setUser] = useState({});
   const [isVerified, setIsVerified] = useState(false);
 
-
   useEffect(() => {
     const newToken = sessionStorage.getItem("token");
     if (newToken) {
@@ -22,11 +21,11 @@ const Auth__contextProvider = (props) => {
         })
         .then(({ data }) => {
           const { user } = data.user;
-          setUser(user);
+          setUser((prevUser) => (prevUser = user));
         })
         .catch((err) => console.log(err));
     }
-  }, [window.location.href]);
+  }, [token]);
 
   return (
     <AuthContext.Provider value={{ token, setIsVerified, user }}>
