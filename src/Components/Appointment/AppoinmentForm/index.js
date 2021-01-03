@@ -28,11 +28,11 @@ export default function AppointmentForm() {
       doctorID: "5feb386a44ae600aecd5bb0f",
       reason: reason,
       symptoms: symptoms,
-      time: localStorage.getItem("slotTime")
-    }
+      time: localStorage.getItem("slotTime"),
+    };
     console.log(data);
     axios.post(url, data);
-  }
+  };
 
   return (
     <div className="apt-form">
@@ -63,12 +63,13 @@ export default function AppointmentForm() {
               message: "Please enter the reason for your appointment: ",
             },
           ]}
+          style={{ marginBottom: 40 }}
         >
-          <Input.TextArea 
-            placeholder="Enter Your Reason" 
-            allowClear 
-            rows={5} 
-            onChange={(e) => setReason(e.target.value)} 
+          <Input.TextArea
+            placeholder="Enter Your Reason"
+            allowClear
+            rows={5}
+            onChange={(e) => setReason(e.target.value)}
           />
         </Form.Item>
         <Form.Item
@@ -81,6 +82,7 @@ export default function AppointmentForm() {
               message: "Please Enter Your Symptoms",
             },
           ]}
+          style={{ marginBottom: 40 }}
         >
           <Input.TextArea
             placeholder="Enter Your Symptoms"
@@ -94,6 +96,7 @@ export default function AppointmentForm() {
           label="Upload any documents: "
           valuePropName="fileList"
           getValueFromEvent={normFile}
+          style={{ marginTop: 30 }}
         >
           <Upload name="logo" action="/upload.do" listType="picture">
             <Button icon={<UploadOutlined />}>Click to upload</Button>
@@ -106,7 +109,12 @@ export default function AppointmentForm() {
             offset: 6,
           }}
         >
-          <Button type="primary" htmlType="submit" loading={uploading} onClick={createAppoinment}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            loading={uploading}
+            onClick={createAppoinment}
+          >
             Submit
           </Button>
         </Form.Item>
