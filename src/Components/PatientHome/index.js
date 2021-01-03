@@ -76,7 +76,7 @@ const PatientHome = (props) => {
           <div className="patient__dp">
             <img
               src={user.image}
-              alt="Raman's DP"
+              alt={`${user.name}'s DP`}
             />
           </div>
           <Link to="/profile">{user.name}</Link>
@@ -91,13 +91,13 @@ const PatientHome = (props) => {
             ) 
               : null 
           }
+          {/* <DoctorCard />
           <DoctorCard />
           <DoctorCard />
           <DoctorCard />
           <DoctorCard />
           <DoctorCard />
-          <DoctorCard />
-          <DoctorCard />
+          <DoctorCard /> */}
         </div>
       </div>
     </div>

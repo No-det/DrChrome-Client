@@ -1,16 +1,19 @@
 import "./index.css";
+import {Link, withRouter} from "react-router-dom";
 const DoctorCard = (props) => {
   return (
+    <>
+    { props.doctor &&
     <div className="doctors__card">
       <div className="doctors__card__left">
         <div className="doctors__card__dp">
           <img
-            src= {props.doctor ? props.doctor.image : "https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg"}
-            alt="Dr. Smith"
+            src= { props.doctor.image }
+            alt= { props.doctor.name }
           />
         </div>
         <div className="doctors__card__brief">
-          <h3>{props.doctor ? props.doctor.name : "Dr. Smith" }</h3>
+          <h3>{ props.doctor.name }</h3>
           <p>Pediatrician</p>
         </div>
       </div>
@@ -33,11 +36,14 @@ const DoctorCard = (props) => {
           </tbody>
         </table>
         <div className="doctors__card__appointment__button">
-          <a href="/appointment/">MAKE APPOINTMENT</a>
+          {/* <Link to={{pathname: "/appointment", state: {id: props.doctor._id}}}>MAKE APPOINTMENT</Link> */}
+          <a href={`/appointment/${props.doctor._id}`}>MAKE APPOINTMENT</a>
         </div>
       </div>
-    </div>
+    </div> }
+    </>
   );
 };
 
+// export default withRouter(DoctorCard);
 export default DoctorCard;

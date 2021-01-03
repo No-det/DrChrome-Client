@@ -11,10 +11,13 @@ export default function SlotSelector () {
     const [slotWeek, setslotWeek] = useState(getWeek());
 
     useEffect(() => {
-        localStorage.setItem(
-            "slotTime",
-            new Date(`${getMonth[slotDate.getMonth()]} ${slotDate.getDate()}, ${slotDate.getFullYear()} ${slotTime}`)
-        )
+        if (slotTime === "Not Selected")
+            localStorage.setItem("slotTime", "invalid");
+        else
+            localStorage.setItem(
+                "slotTime",
+                new Date(`${getMonth[slotDate.getMonth()]} ${slotDate.getDate()}, ${slotDate.getFullYear()} ${slotTime}`)
+            )
         return () => {
             // 
         }
@@ -27,7 +30,7 @@ export default function SlotSelector () {
                 <p>{slotDate.getDate()} - {slotDate.getMonth() + 1} - {slotDate.getFullYear()}</p>
                 <p>{slotTime}</p>
             </div>
-            <button onClick={() => setslotDate(new Date())}>Back to Today</button>
+            <button onClick={() => {setslotDate(new Date()); setslotTime("Not Selected")}}>Back to Today</button>
         </div>
         <div className="weekSelector">
             <div className="daySelector">

@@ -1,23 +1,31 @@
 import { Button, Form, Input, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import "./index.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../../Contexts/Auth__Context";
 import axios from "axios";
-import { Redirect } from "react-router-dom"
+import { Redirect, withRouter } from "react-router-dom"
 
 
-export default function AppointmentForm(props) {
+const AppointmentForm =(props) => {
   const [uploading, setUploading] = useState(false);
   const [reason, setReason] = useState("");
   const [symptoms, setSymptoms] = useState("");
   const { user } = useContext(AuthContext);
-  const [redirect, setRedirect] = useState(false)
+  const [redirect, setRedirect] = useState(false);
   const url = `http://localhost:8000/api/appoinment/${user._id}`;
 
-
+  const [data, setData] = useState({})
   const onFinish = async (values) => {
     console.log(values);
+    setData({...values, time: localStorage.getItem("slotTime"), doctorID: window.location.pathname.split("/")[2]});
+    let res;
+    if (localStorage.getItem("slotTime") !== "invalid") {
+      res = await axios.post(url, data);
+      if (res.status == 200) setRedirect(true);
+    }
+    else
+      alert("Please select a valid slot");
   };
 
   const normFile = (e) => {
@@ -28,16 +36,10 @@ export default function AppointmentForm(props) {
     return e && e.fileList;
   };
 
-  const createAppoinment = async () => {
-    let data = {
-      doctorID: "5feb386a44ae600aecd5bb0f",
-      reason: reason,
-      symptoms: symptoms,
-      time: localStorage.getItem("slotTime"),
-    };
-    let res = await axios.post(url, data);
-    if (res.status == 200) setRedirect(true);
-  };
+  useEffect(async () => {
+    let res, id;
+    id = window.location.pathname.split("/")[2];
+  }, [props.location])
 
   return (
     redirect ? <Redirect to="/patient/" /> :
@@ -111,7 +113,6 @@ export default function AppointmentForm(props) {
             type="primary"
             htmlType="submit"
             loading={uploading}
-            onClick={createAppoinment}
           >
             Submit
           </Button>
@@ -121,5 +122,8 @@ export default function AppointmentForm(props) {
   );
 }
 
+
+// export default withRouter(AppointmentForm);
+export default AppointmentForm;
 // 414227024002-7msf4kdntm638jgr2uccptmrb3s2kc23.apps.googleusercontent.com
 // z9GSp8u6a46WbigqybKyF-gW

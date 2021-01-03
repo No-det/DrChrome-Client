@@ -18,7 +18,7 @@ function Router() {
     <BrowserRouter>
       <Switch>
         <Route
-          path={["/test", "/doctor", "/patient", "/appointment", "/profile"]}
+          path={["/test", "/doctor", "/patient", "/appointment/:id", "/profile"]}
         >
           <Layout>
             <Switch>
@@ -26,7 +26,7 @@ function Router() {
               <PrivateRoute exact path="/profile" component={PatientProfile} />
               <PrivateRoute path="/doctor" component={DoctorHome} />
               <PrivateRoute path="/patient" component={PatientHome} />
-              <PrivateRoute path="/appointment" component={Appointment} />
+              <PrivateRoute path="/appointment/:id" component={Appointment} />
             </Switch>
           </Layout>
         </Route>

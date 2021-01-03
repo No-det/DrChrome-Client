@@ -2,23 +2,38 @@ import "./index.css";
 // import Slot from './Slot';
 import AppoinmentForm from "./AppoinmentForm";
 import SlotSelector from "./SlotSelector";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 const Appointment = () => {
+
+  const [doctor, setDoctor] = useState({});
+  useEffect(async () => {
+    let res, id;
+    id = window.location.pathname.split("/")[2];
+    if (id)
+    {
+      res = await axios.get(`http://localhost:8000/api/getUser/${id}`)
+      setDoctor(res.data);
+    }
+    console.log(doctor);
+  }, [])
   return (
+    <>
+    {doctor ?
     <div className="apt">
       <div className="apt-docContainer">
         <div className="apt-docCard">
           <div className="apt-docCard-id">
             <img
-              src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg"
-              alt="Dr. Smith"
+              src={doctor.image}
+              alt={doctor.name}
             />
             <div className="apt-docCard-id-txt">
-              <h3 style={{ marginBottom: 15 }}>Dr. Unni Chekavar</h3>
+              <h3 style={{ marginBottom: 15 }}>{doctor.name}</h3>
               <h4 style={{ marginBottom: 10 }}>Unni's Hospital, New York</h4>
               <p>
-                1221, Baker Street, Santa Claus, <br /> <br /> New York, New
-                York
+                1221, Baker Street, Santa Claus, <br /> <br /> {doctor.city}
               </p>
             </div>
           </div>
@@ -33,7 +48,7 @@ const Appointment = () => {
             </div>
             <div className="apt-docCard-dtl">
               <p>Total Appoinments</p>
-              <p>74</p>
+              <p>{doctor?.appointments?.length}</p>
             </div>
             <div className="apt-docCard-dtl">
               <p>Years of Experience</p>
@@ -48,7 +63,8 @@ const Appointment = () => {
       <div className="apt-formContainer">
         <AppoinmentForm />
       </div>
-    </div>
+    </div> : <></> }
+    </>
   );
 };
 
