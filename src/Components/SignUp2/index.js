@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 const { Option } = Select;
 
 const SignUp2 = (props) => {
-  const { user, setToken } = useContext(AuthContext);
+  const { user, changeUser } = useContext(AuthContext);
   const [uploading, setUploading] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState();
@@ -27,8 +27,7 @@ const SignUp2 = (props) => {
       setUploading(false);
     }, 2000);
     if (response.statusText === "OK") {
-      sessionStorage.setItem("token", response.data.token);
-      setToken(response.data.token);
+      changeUser(response.data.token);
       setRedirect(true);
     } else {
       setError(response.data);

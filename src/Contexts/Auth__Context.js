@@ -26,8 +26,15 @@ const Auth__contextProvider = (props) => {
       .catch((err) => console.log(err));
   }, [token]);
 
+  const changeUser = (token) => {
+    sessionStorage.setItem("token", token);
+    setToken(token);
+  };
+
   return (
-    <AuthContext.Provider value={{ token, user, setUser, setToken }}>
+    <AuthContext.Provider
+      value={{ token, user, setUser, setToken, changeUser }}
+    >
       {props.children}
     </AuthContext.Provider>
   );
