@@ -20,10 +20,10 @@ const PatientHome = (props) => {
     nextAppEnd = new Date(nextApp);
     nextAppEnd.setMinutes(nextApp.getMinutes() + 30);
   }
+  // eslint-disable-next-line
   useEffect(async() => {
     let res = await axios.get("http://localhost:8000/api/getDoctors");
     setDoctors(res.data);
-    console.log(doctors)
   }, [])
 
   return (

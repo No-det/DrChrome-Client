@@ -1,5 +1,4 @@
 import "./index.css";
-import {Link, withRouter} from "react-router-dom";
 const DoctorCard = (props) => {
   return (
     <>

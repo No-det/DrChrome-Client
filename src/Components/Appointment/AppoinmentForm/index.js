@@ -4,28 +4,22 @@ import "./index.css";
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../../Contexts/Auth__Context";
 import axios from "axios";
-import { Redirect, withRouter } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 
 
-const AppointmentForm =(props) => {
+const AppointmentForm =() => {
+
+  // eslint-disable-next-line
   const [uploading, setUploading] = useState(false);
-  const [reason, setReason] = useState("");
-  const [symptoms, setSymptoms] = useState("");
-  const { user } = useContext(AuthContext);
+  const [doctorID, setDoctorID] = useState("");
   const [redirect, setRedirect] = useState(false);
-  const url = `http://localhost:8000/api/appoinment/${user._id}`;
+  const [data, setData] = useState(null);
+  const [url, setUrl] = useState("")
 
-  const [data, setData] = useState({})
-  const onFinish = async (values) => {
-    console.log(values);
-    setData({...values, time: localStorage.getItem("slotTime"), doctorID: window.location.pathname.split("/")[2]});
-    let res;
-    if (localStorage.getItem("slotTime") !== "invalid") {
-      res = await axios.post(url, data);
-      if (res.status == 200) setRedirect(true);
-    }
-    else
-      alert("Please select a valid slot");
+  const { user, changeUser } = useContext(AuthContext);
+
+  const onFinish = async (formValues) => {
+    setData({...formValues, time: localStorage.getItem("slotTime"), doctorID: doctorID});
   };
 
   const normFile = (e) => {
@@ -36,10 +30,29 @@ const AppointmentForm =(props) => {
     return e && e.fileList;
   };
 
+  useEffect(() => {
+    setDoctorID(window.location.pathname.split("/")[2]);
+    console.log(user)
+    setUrl(`http://localhost:8000/api/appointment/${user._id}`);
+    console.log(url)  
+  }, [window.location.pathname, user._id])
+
   useEffect(async () => {
-    let res, id;
-    id = window.location.pathname.split("/")[2];
-  }, [props.location])
+    if (data !== null) {
+      if (localStorage.getItem("slotTime") !== "invalid") {
+        console.log(url)
+        const res = await axios.post(`http://localhost:8000/api/appointment/${user._id}`, data);
+        console.log(res)
+        if (res.status === 200) {
+          changeUser(res.data);
+          console.log("ok");
+          setRedirect(true);
+        } else if (res.status === 203)
+          alert("Booking cancelled. Complete the booked appointments to book a new one.")
+      }
+      else alert("Please select a valid slot");
+    }
+  }, [data])
 
   return (
     redirect ? <Redirect to="/patient/" /> :
@@ -69,7 +82,6 @@ const AppointmentForm =(props) => {
             placeholder="Enter Your Reason"
             allowClear
             rows={5}
-            onChange={(e) => setReason(e.target.value)}
           />
         </Form.Item>
         <Form.Item
@@ -88,7 +100,6 @@ const AppointmentForm =(props) => {
             placeholder="Enter Your Symptoms"
             allowClear
             rows={5}
-            onChange={(e) => setSymptoms(e.target.value)}
           />
         </Form.Item>
         <Form.Item

@@ -8,7 +8,7 @@ export default function SlotSelector () {
 
     const [slotTime, setslotTime] = useState("Not Selected");
     const [slotDate, setslotDate] = useState(new Date());
-    const [slotWeek, setslotWeek] = useState(getWeek());
+    const slotWeek = getWeek();
 
     useEffect(() => {
         if (slotTime === "Not Selected")
@@ -18,9 +18,6 @@ export default function SlotSelector () {
                 "slotTime",
                 new Date(`${getMonth[slotDate.getMonth()]} ${slotDate.getDate()}, ${slotDate.getFullYear()} ${slotTime}`)
             )
-        return () => {
-            // 
-        }
     }, [slotDate, slotTime])
 
     return <div className="slotSelector">

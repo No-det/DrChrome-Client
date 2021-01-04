@@ -21,14 +21,14 @@ const Auth__contextProvider = (props) => {
       })
       .then(({ data }) => {
         const { user } = data.user;
-        setUser(user);
+        setUser(user, () => console.log(user));
       })
       .catch((err) => console.log(err));
   }, [token]);
 
-  const changeUser = (token) => {
-    sessionStorage.setItem("token", token);
-    setToken(token);
+  const changeUser = (tok) => {
+    sessionStorage.setItem("token", tok);
+    setToken(tok);
   };
 
   return (

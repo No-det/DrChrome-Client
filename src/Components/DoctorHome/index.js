@@ -1,10 +1,15 @@
 import "./index.css";
+import { useContext, useEffect, useState } from 'react';
 import { Icon } from "@iconify/react";
 import bxSearch from "@iconify/icons-bx/bx-search";
 import AppointmentCard from "./AppointmentCard";
 import StatsCircle from "./StatsCircle";
+import { AuthContext } from "../../Contexts/Auth__Context";
 
 const DoctorHome = () => {
+  const { user } = useContext(AuthContext);
+  // useEffect(() => {
+  // }, [user])
   return (
     <div className="doc_main">
       <div className="docLeft">
@@ -22,13 +27,13 @@ const DoctorHome = () => {
         <div className="docLeft-2">
           <div className="greetingCard">
             <p>
-              Good Morning, <em>Dr. Appukuttan</em>
+              Good Morning, <em>Dr. {user.name}</em>
             </p>
             <p style={{ fontWeight: 400 }}>Have a good day at work!</p>
           </div>
           <div className="totAppBtn">
             <p>Total Appointments</p>
-            <p>97</p>
+            <p>{user.appointments ? user.appointments.length : 0}</p>
           </div>
         </div>
         <div className="docLeft-3">
@@ -40,19 +45,22 @@ const DoctorHome = () => {
               <p>Time</p>
               <p>Status</p>
             </div>
-            <AppointmentCard />
-            <AppointmentCard />
-            <AppointmentCard />
-            <AppointmentCard />
+              {
+                user.appointments ?
+                user.appointments.map(appointment =>
+                  <AppointmentCard appointment={appointment} />
+                ) : <p>loading...</p>
+              }
           </div>
         </div>
       </div>
       <div className="docRight">
         <div className="docDetails">
-          <p>Dr. Appukuttan</p>
+          <p>Dr. {user.name}</p>
           <img
-            src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg"
-            alt="avatart"
+            // src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg"
+            src={user.image}
+            alt={user.name}
             style={{ marginRight: 10 }}
           />
         </div>
@@ -66,7 +74,7 @@ const DoctorHome = () => {
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default DoctorHome;

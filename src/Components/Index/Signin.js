@@ -8,16 +8,19 @@ import queryString from "query-string";
 import { AuthContext } from "../../Contexts/Auth__Context";
 
 export default function Signin(props) {
-  const { user } = useContext(AuthContext);
-  useEffect(async () => {
+
+  const { user, changeUser } = useContext(AuthContext);
+
+  useEffect(() => {
     const { token } = queryString.parse(props.location.search);
     if (token) {
-      sessionStorage.setItem("token", token);
-      console.log(typeof user);
-      user.isDoctor
-        ? props.history.push("/doctor")
-        : props.history.push("/patient");
+      changeUser(token);
+      if (user)
+        user.isDoctor
+          ? props.history.push("/doctor")
+          : props.history.push("/patient");
     }
+    // eslint-disable-next-line
   }, [props.location, props.history]);
 
   return (

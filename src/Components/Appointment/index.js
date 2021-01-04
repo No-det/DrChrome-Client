@@ -8,6 +8,7 @@ import axios from "axios";
 const Appointment = () => {
 
   const [doctor, setDoctor] = useState({});
+  // eslint-disable-next-line
   useEffect(async () => {
     let res, id;
     id = window.location.pathname.split("/")[2];
@@ -16,7 +17,6 @@ const Appointment = () => {
       res = await axios.get(`http://localhost:8000/api/getUser/${id}`)
       setDoctor(res.data);
     }
-    console.log(doctor);
   }, [])
   return (
     <>
@@ -61,7 +61,7 @@ const Appointment = () => {
         </div>
       </div>
       <div className="apt-formContainer">
-        <AppoinmentForm />
+        <AppoinmentForm test=""/>
       </div>
     </div> : <></> }
     </>
