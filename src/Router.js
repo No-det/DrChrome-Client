@@ -12,13 +12,20 @@ import SignUp2 from "./Components/SignUp2";
 import PrivateRoute from "./Contexts/Private__Route";
 
 import PatientProfile from "./Components/PatientProfile";
+import VideoConf from "./Components/VideoConf";
 
 function Router() {
   return (
     <BrowserRouter>
       <Switch>
         <Route
-          path={["/test", "/doctor", "/patient", "/appointment/:id", "/profile"]}
+          path={[
+            "/test",
+            "/doctor",
+            "/patient",
+            "/appointment/:id",
+            "/profile",
+          ]}
         >
           <Layout>
             <Switch>
@@ -36,6 +43,7 @@ function Router() {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/signup2" component={SignUp2} />
             <PrivateRoute exact path="/isDoctor/" component={Divider} />
+            <Route exact path="/room/:id" component={VideoConf} />
             <Route component={NotFound} />
           </Switch>
         </Route>
