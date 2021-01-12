@@ -1,5 +1,6 @@
 import "./index.css";
 const DoctorCard = (props) => {
+  console.log(props.doctor)
   return (
     <>
     { props.doctor &&
@@ -13,7 +14,7 @@ const DoctorCard = (props) => {
         </div>
         <div className="doctors__card__brief">
           <h3>{ props.doctor.name }</h3>
-          <p>Pediatrician</p>
+          <p>{ props.doctor?.specialization }</p>
         </div>
       </div>
       <div className="doctors__card__right">

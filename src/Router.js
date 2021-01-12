@@ -8,7 +8,8 @@ import Layout from "./Layout";
 import Signup from "./Components/Index/Signup";
 import Divider from "./Components/Index/Divider";
 import NotFound from "./Components/404";
-import SignUp2 from "./Components/SignUp2";
+import PatientSetup from "./Components/PatientSetup";
+import DoctorSetup from "./Components/DoctorSetup";
 import PrivateRoute from "./Contexts/Private__Route";
 
 import PatientProfile from "./Components/PatientProfile";
@@ -30,11 +31,12 @@ function Router() {
             </Switch>
           </Layout>
         </Route>
-        <Route path={["/", "/signup", "/signup2", "/isDoctor/"]}>
+        <Route path={["/", "/signup", "/patientSetup", "/doctorSetup", "/isDoctor/"]}>
           <Switch>
             <Route exact path="/" component={Signin} />
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/signup2" component={SignUp2} />
+            <Route exact path="/patientSetup" component={PatientSetup} />
+            <Route exact path="/doctorSetup" component={DoctorSetup} />
             <PrivateRoute exact path="/isDoctor/" component={Divider} />
             <Route component={NotFound} />
           </Switch>

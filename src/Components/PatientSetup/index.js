@@ -4,10 +4,11 @@ import axios from "axios";
 import { AuthContext } from "../../Contexts/Auth__Context";
 import { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
+import DoctorSetup from "../DoctorSetup";
 
 const { Option } = Select;
 
-const SignUp2 = (props) => {
+const PatientSetup = (props) => {
   const { user, changeUser } = useContext(AuthContext);
   const [uploading, setUploading] = useState(false);
   const [redirect, setRedirect] = useState(false);
@@ -197,7 +198,7 @@ const SignUp2 = (props) => {
               offset: 6,
             }}
           >
-            <Button type="primary" htmlType="submit" loading={uploading}>
+            <Button className="form-submit" type="primary" htmlType="submit" loading={uploading}>
               Submit
             </Button>
           </Form.Item>
@@ -209,4 +210,4 @@ const SignUp2 = (props) => {
   );
 };
 
-export default SignUp2;
+export default PatientSetup;

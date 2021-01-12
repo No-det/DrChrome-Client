@@ -38,7 +38,7 @@ const PatientProfile = () => {
                     Appointments: <span>{(user.appointments && user.appointments.length !== 0) ? user.appointments.length : 0 }</span>
                   </h4>
                 </div>
-                <Link className="patientprofile__editprofile" to="/signup2">
+                <Link className="patientprofile__editprofile" to="/patientSetup">
                   Edit Profile
                 </Link>
               </div>
