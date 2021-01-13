@@ -2,7 +2,7 @@ import "./index.css";
 import { Form, Select, Button, DatePicker, Input } from "antd";
 import axios from "axios";
 import { AuthContext } from "../../Contexts/Auth__Context";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import DoctorSetup from "../DoctorSetup";
 
@@ -13,6 +13,7 @@ const PatientSetup = (props) => {
   const [uploading, setUploading] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState();
+  const setupForm = useRef(null);
 
   const onFinish = async (values) => {
     setUploading(true);
@@ -35,6 +36,10 @@ const PatientSetup = (props) => {
     }
   };
 
+  useEffect(() => {
+    setupForm.current.setFieldsValue({ ...user });
+  }, [user])
+
   return (
     <div className="signup2__container">
       <div className="signup2__left">{/* <h1>Dr.Chrome</h1> */}</div>
@@ -43,6 +48,7 @@ const PatientSetup = (props) => {
       </div>
       <div className="signup2__right">
         <Form
+          ref={setupForm}
           name="validate_other"
           onFinish={onFinish}
           requiredMark={false}

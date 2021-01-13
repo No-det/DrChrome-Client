@@ -101,10 +101,10 @@ const PatientProfile = () => {
                   (user.appointments && user.appointments.length !== 0) ? 
                     nav === 0 ?
                     user.appointments.map(appointment =>
-                      appointment.status !== "pending" ? <AppointmentCard appointment={appointment} /> : null
+                      appointment.isDone ? <AppointmentCard appointment={appointment} /> : null
                     ) :
                     user.appointments.map(appointment =>
-                      appointment.status === "pending" ? <AppointmentCard appointment={appointment} /> : null
+                      !appointment.isDone ? <AppointmentCard appointment={appointment} /> : null
                     )
                   : null
                 }

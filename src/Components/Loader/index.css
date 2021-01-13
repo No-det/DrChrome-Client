@@ -1,0 +1,31 @@
+.loading {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loading p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 2.5vh;
+}
+.loader {
+  position: absolute;
+  height: 22vh;
+  width: 22vh;
+  border: 2px solid #ffffff;
+  border-top: 18px solid #009bd9;
+  border-bottom: 18px solid #01d9ad;
+  border-radius: 50%;
+  -webkit-animation: spin 1.5s linear infinite; /* Safari */
+  animation: spin 1.5s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

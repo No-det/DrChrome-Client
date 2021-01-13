@@ -32,9 +32,16 @@ export default function Navbar(props) {
       <Link
         to="/doctor"
         className={selected === 4 ? `material-icons active` : `material-icons`}
-        onClick={(e) => setSelected(4)}
+        onClick={() => setSelected(4)}
       >
         notifications
+      </Link>
+      <Link
+        to="/waiting"
+        className={selected === 5 ? `material-icons active` : `material-icons`}
+        onClick={() => setSelected(5)}
+      >
+        videocam
       </Link>
       <div
         className="logout"

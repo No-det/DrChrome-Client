@@ -1,10 +1,10 @@
+import { AuthContext } from "../../../Contexts/Auth__Context";
+import { useState, useContext, useEffect } from "react";
 import { Button, Form, Input, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import "./index.css";
-import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../../../Contexts/Auth__Context";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
-import { Redirect } from "react-router-dom"
+import "./index.css";
 
 
 const AppointmentForm =() => {

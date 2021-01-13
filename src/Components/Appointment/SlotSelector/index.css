@@ -56,8 +56,7 @@
 .dayBlocks {
   display: flex;
   width: 100%;
-  margin: 0% 5%;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .daySelector span {
   color: rgb(0, 103, 147, 1);
@@ -79,8 +78,8 @@
 }
 .timeSelector {
   display: flex;
-  justify-content: space-between;
-  margin: 1% 2%;
+  justify-content: space-around;
+  margin: 1% 0%;
 }
 .timeBlock-passed,
 .timeBlock-notAvailable,
@@ -94,7 +93,7 @@
   font-size: 1.8vh;
   font-weight: 500;
   border-radius: 5px;
-  margin-top: 15px;
+  margin-top: 12px;
 }
 .slot-dtls {
   display: flex;
@@ -138,9 +137,9 @@
   cursor: pointer;
 }
 .timeBlock-selected,
-.timeBlock-available:hover,
-.timeBlock-selected:hover {
+.timeBlock-available:hover {
   color: #ffffff;
+  cursor: pointer;
   background: #009bd9;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 }

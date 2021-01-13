@@ -5,13 +5,31 @@ import bxSearch from "@iconify/icons-bx/bx-search";
 import AppointmentCard from "./AppointmentCard";
 import StatsCircle from "./StatsCircle";
 import { AuthContext } from "../../Contexts/Auth__Context";
+import Loader from '../Loader';
 
 const DoctorHome = () => {
   const { user } = useContext(AuthContext);
-  // useEffect(() => {
-  // }, [user])
+  const [consulted, setConsulted] = useState(0);
+  const [pending, setPending] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user.appointments) {
+      user.appointments.map(appointment => {
+        setTotal(total + 1);
+        if (appointment.isProcessed) 
+          if (appointment.isAccepted)
+            if (appointment.isDone) setConsulted(consulted + 1)
+            else setPending(pending + 1)
+      });
+      setLoading(false);
+    }
+  }, [user.appointments])
+
   return (
-    <div className="doc_main">
+    loading ? <Loader /> :
+    <div className="doc_main"> {console.log(consulted, pending, total)}
       <div className="docLeft">
         <div className="docLeft-1">
           <div className="doc_search">
@@ -48,7 +66,9 @@ const DoctorHome = () => {
               {
                 user.appointments ?
                 user.appointments.map(appointment =>
-                  <AppointmentCard appointment={appointment} />
+                  appointment.isDone ?
+                    <AppointmentCard appointment={appointment} user={user._id} />
+                  : null
                 ) : <p>loading...</p>
               }
           </div>
@@ -66,11 +86,11 @@ const DoctorHome = () => {
         </div>
         <div className="lastReport">
           <h2>Last day's report</h2>
-          <StatsCircle />
+          <StatsCircle consulted={consulted} pending={pending} />
         </div>
         <div className="lastReport">
           <h2>Monthly report</h2>
-          <StatsCircle />
+          <StatsCircle consulted={consulted} pending={pending} />
         </div>
       </div>
     </div>

@@ -2,10 +2,11 @@ import "./index.css";
 
 import Design from "./Designs/design";
 import { Link } from "react-router-dom";
-import { GoogleOutlined } from "@ant-design/icons";
+// import { GoogleOutlined } from "@ant-design/icons";
 import { useContext, useEffect } from "react";
 import queryString from "query-string";
 import { AuthContext } from "../../Contexts/Auth__Context";
+import GoogleIcon from "../../assets/google.svg";
 
 export default function Signin(props) {
 
@@ -45,8 +46,9 @@ export default function Signin(props) {
           <p>Or</p>
           <div className="googleSignContainer">
             <a href="http://localhost:8000/auth/google">
-              <GoogleOutlined className="googleLogo" />
-              <p>Sign in with google</p>
+              <img src={GoogleIcon} alt="Signin with Google" />
+              {/* <GoogleOutlined className="googleLogo" /> */}
+              <p>Sign in with Google</p>
             </a>
           </div>
         </div>

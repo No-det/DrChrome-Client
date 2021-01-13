@@ -20,3 +20,31 @@
   width: 50px;
   border-radius: 50%;
 }
+.appCard-accept {
+  display: flex;
+  justify-content: space-between;
+  width: 64px;
+}
+.appCard-done,
+.appCard-notDone {
+  border-radius: 100px;
+  height: 28px;
+  width: 28px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.appCard-done {
+  background: green;
+}
+.appCard-done:hover {
+  box-shadow: 1px 1px 10px 1px rgb(0, 168, 0);
+}
+.appCard-notDone {
+  background: rgb(200, 0, 0);
+}
+.appCard-notDone:hover {
+  box-shadow: 1px 1px 8px 1px rgb(250, 0, 0);
+}

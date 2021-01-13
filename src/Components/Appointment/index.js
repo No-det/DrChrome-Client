@@ -16,8 +16,10 @@ const Appointment = () => {
     {
       res = await axios.get(`http://localhost:8000/api/getUser/${id}`)
       setDoctor(res.data);
+      console.log(typeof(doctor))
     }
   }, [])
+
   return (
     <>
     {doctor ?
@@ -31,7 +33,7 @@ const Appointment = () => {
             />
             <div className="apt-docCard-id-txt">
               <h3 style={{ marginBottom: 15 }}>{doctor.name}</h3>
-              <h4 style={{ marginBottom: 10 }}>Unni's Hospital, New York</h4>
+              <h4 style={{ marginBottom: 10 }}>{ doctor.hospital }</h4>
               <p>
                 1221, Baker Street, Santa Claus, <br /> <br /> {doctor.city}
               </p>
@@ -40,11 +42,11 @@ const Appointment = () => {
           <div className="apt-docCard-dtls">
             <div className="apt-docCard-dtl">
               <p>Specialization</p>
-              <p>Paediatrician</p>
+              <p>{ doctor.specialization }</p>
             </div>
             <div className="apt-docCard-dtl">
               <p>Pricing</p>
-              <p>$60 / hr </p>
+              <p>${ doctor.pricing } / hr </p>
             </div>
             <div className="apt-docCard-dtl">
               <p>Total Appoinments</p>
@@ -52,12 +54,12 @@ const Appointment = () => {
             </div>
             <div className="apt-docCard-dtl">
               <p>Years of Experience</p>
-              <p>5 Yrs</p>
+              <p>{ doctor.yearsOfExp } Yrs</p>
             </div>
           </div>
         </div>
         <div className="apt-slotSelector">
-          <SlotSelector />
+          <SlotSelector doctor={doctor} />
         </div>
       </div>
       <div className="apt-formContainer">

@@ -82,9 +82,14 @@
   justify-content: center;
   margin-top: 20px;
 }
+.googleSignContainer img {
+  height: 45px;
+  width: 45px;
+}
 
 .googleSignContainer p {
-  padding-top: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .googleSignContainer a {
@@ -94,7 +99,7 @@
   justify-content: space-evenly;
   height: 80px;
   border-radius: 30px;
-  width: 100%;
+  width: 90%;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 .googleLogo {
@@ -122,7 +127,7 @@
   width: fit-content;
   cursor: pointer;
   margin-top: 10%;
-  color: #009BD9;
+  color: #009bd9;
 }
 .port-divider p {
   margin: 0;
@@ -130,15 +135,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid #01D9AD;
+  border: 3px solid #01d9ad;
   padding: 10px 30px;
 }
 .port-divider p:hover {
-  background-color: #01D9AD;
-  color: #009BD9;
+  background-color: #01d9ad;
+  color: #009bd9;
 }
 .port-divider-active {
-  background-color: #01D9AD;
+  background-color: #01d9ad;
   color: white;
 }
 .port-divider p:nth-child(1) {
@@ -163,11 +168,11 @@
   position: fixed;
 }
 .portDiv button:hover {
-  color: #009BD9;
+  color: #009bd9;
   cursor: pointer;
 }
 .portDiv button span {
-  color: #01D9AD;
+  color: #01d9ad;
   font-size: 6vh;
 }
 @media only screen and (max-width: 600px) {
@@ -205,9 +210,19 @@
     width: 100px;
     font-size: 15px;
   }
-  .portDiv h3 { font-size: 3vh; }
-  .portDiv p { font-size: 2.5vh; }
-  .portDiv button { font-size: 2.5vh; }
-  .portDiv button span { font-size: 4.5vh; }
-  .port-divider p { border: 2px solid #01D9AD; }
+  .portDiv h3 {
+    font-size: 3vh;
+  }
+  .portDiv p {
+    font-size: 2.5vh;
+  }
+  .portDiv button {
+    font-size: 2.5vh;
+  }
+  .portDiv button span {
+    font-size: 4.5vh;
+  }
+  .port-divider p {
+    border: 2px solid #01d9ad;
+  }
 }

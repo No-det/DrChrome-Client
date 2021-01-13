@@ -1,11 +1,11 @@
 import { Form, Select, Button, Switch, Input, DatePicker } from "antd";
 import axios from "axios";
 import { AuthContext } from "../../Contexts/Auth__Context";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
 const { Option } = Select;
-let slots = ["9:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00", "12:00 - 01:00", "01:00 - 02:00", "02:00 - 03:00", "03:00 - 04:00", "04:00 - 05:00", "05:00 - 06:00"]
+let slots = ["10:00 - 11:00", "11:00 - 12:00", "12:00 - 13:00", "13:00 - 14:00", "14:00 - 15:00", "15:00 - 16:00", "16:00 - 17:00"]
 
 const DoctorSetup = (props) => {
   const { user, changeUser } = useContext(AuthContext);
@@ -13,6 +13,7 @@ const DoctorSetup = (props) => {
   const [uploading, setUploading] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState();
+  const setupForm = useRef();
 
   const onFinish = async (values) => {
     setUploading(true);
@@ -26,7 +27,15 @@ const DoctorSetup = (props) => {
     const newUser = {
       ...user,
       ...values,
-      slots: selectedSlots,
+      slots: {
+        "10:00 - 11:00": selectedSlots[0],
+        "11:00 - 12:00": selectedSlots[1],
+        "12:00 - 13:00": selectedSlots[2],
+        "13:00 - 14:00": selectedSlots[3],
+        "14:00 - 15:00": selectedSlots[4],
+        "15:00 - 16:00": selectedSlots[5],
+        "16:00 - 17:00": selectedSlots[6],
+      },
       dob: new Date(values.dob.format("DD/MM/YYYY")),
       isVerified: true,
     };
@@ -44,6 +53,10 @@ const DoctorSetup = (props) => {
     }
   };
 
+  useEffect(() => {
+    setupForm.current.setFieldsValue({ ...user });
+  }, [user])
+
   return (
     <div className="signup2__container">
       <div className="signup2__left">{/* <h1>Dr.Chrome</h1> */}</div>
@@ -52,6 +65,7 @@ const DoctorSetup = (props) => {
       </div>
       <div className="signup2__right">
         <Form
+          ref={setupForm}
           name="validate_other"
           onFinish={onFinish}
           onChange={(e) => console.log(e.target.value)}
@@ -65,6 +79,7 @@ const DoctorSetup = (props) => {
             label="Name"
             hasFeedback
             className="form__item"
+            
             rules={[
               {
                 required: true,

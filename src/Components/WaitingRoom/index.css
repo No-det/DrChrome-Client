@@ -1,0 +1,26 @@
+.waitingRoom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+.app-time {
+  background: #97eecf;
+  color: #006793;
+  font-size: 16px;
+  padding: 15px 40px;
+  border-radius: 10px;
+  margin-bottom: 4%;
+}
+.waitingRoom .ant-btn-primary {
+  background: #009bd9;
+  width: 200px;
+  height: 60px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+.waitingRoom .ant-btn-loading a {
+  color: white;
+}
