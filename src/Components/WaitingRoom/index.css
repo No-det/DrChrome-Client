@@ -9,18 +9,31 @@
 .app-time {
   background: #97eecf;
   color: #006793;
-  font-size: 16px;
-  padding: 15px 40px;
+  padding: 15px 45px;
   border-radius: 10px;
   margin-bottom: 4%;
+  margin-top: 4%;
 }
-.waitingRoom .ant-btn-primary {
+.app-time p {
+  font-size: 18px;
+  padding: 8px 0;
+}
+.app-time-error {
+  font-size: 16px;
+}
+.waitingRoom .ant-btn {
   background: #009bd9;
   width: 200px;
   height: 60px;
   font-size: 20px;
   border-radius: 5px;
 }
-.waitingRoom .ant-btn-loading a {
+.waitingRoom .ant-btn a {
   color: white;
+}
+.app-part-dtls {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }

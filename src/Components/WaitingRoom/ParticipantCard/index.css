@@ -1,0 +1,44 @@
+.ppt-card {
+  background: #daf4ff;
+  border-radius: 8px;
+  padding: 10px 30px;
+}
+.ppt-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ppt-card-head img {
+  height: 90px;
+  width: 90px;
+  border-radius: 100px;
+}
+.ppt-card-head-data {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+.ppt-card-head-data p:nth-child(1) {
+  color: #006793;
+  font-size: 24px;
+  font-weight: 500;
+}
+.ppt-card-head-data P:nth-child(2) {
+  color: #6198b0;
+}
+.ppt-card-head-data p:nth-child(3) {
+  color: #a2bfcb;
+}
+.ppt-card-body {
+  margin: 10px 0;
+}
+.ppt-card-body p {
+  color: rgba(0, 130, 185, 0.7);
+  font-size: 14px;
+  padding: 5px 20px;
+}
+.ppt-card-body b {
+  color: #006793;
+  font-weight: 500;
+  font-size: 16px;
+}

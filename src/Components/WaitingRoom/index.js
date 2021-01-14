@@ -3,70 +3,91 @@ import './index.css';
 import { Button } from 'antd'
 import { AuthContext } from "../../Contexts/Auth__Context";
 import { Link, withRouter } from 'react-router-dom';
+// import Loader from '../Loader';
+import axios from 'axios';
+import ParticipantCard from './ParticipantCard';
 import Loader from '../Loader';
 
 const WaitingRoom = (props) => {
     const { user } = useContext(AuthContext);
+    const [remoteUser, setRemoteUser] = useState({});
     const [loading, setLoading] = useState(true)
     const [docId, setDocId] = useState("")
     const [patId, setPatId] = useState("")
     const [appointment, setAppointment] = useState({});
     const [error, setError] = useState(null);
+    let res;
 
-    let nearest = 0, diff;
     useEffect( async () => {
-        if (user && user.appointments && user.appointments.length !== 0)
-            nearest = new Date(user.appointments[0].time) - new Date();
-            user.appointments.map(appointment => {
-                // diff = new Date(appointment.time) - new Date();
-                // if (diff > 0 && nearest < 0) {
-                //     setMeetId(appointment._id)
-                //     nearest = diff;
-                // }
-                // if (diff < nearest && diff > 0) {
-                //     setMeetId(appointment._id)
-                //     nearest = diff;
-                // }
-                if (new Date(appointment.time).toLocaleDateString() === new Date().toLocaleDateString()) {
-                    setDocId(appointment.doctorID);
-                    setPatId(appointment.patientID);
-                    setAppointment(appointment);
-                }
-                if (docId == "" && patId == "" && Object.keys(appointment).length !== 0)
-                    setError("You have no meetings scheduled today.")
-            });
+        if (user && user.upcomingApps && user.upcomingApps.length !== 0) {
+            setAppointment(user.upcomingApps[0]);
+            setDocId(user.upcomingApps[0].doctorID);
+            setPatId(user.upcomingApps[0].patientID);
+            if (user._id === appointment.patientID) {
+                res = await axios.get(`http://localhost:8000/api/getUser/${appointment.doctorID}`);
+                setRemoteUser(res.data);
+            }
+            else {
+                res = await axios.get(`http://localhost:8000/api/getUser/${appointment.patientID}`);
+                setRemoteUser(res.data);
+            }
+            if (docId === "" && patId === "" && Object.keys(appointment).length === 0)
+                setError("You have no meetings scheduled today.")
+        }
     }, [user.appointments])
 
     useEffect(() => {
-        if (docId.length > 1 && patId.length > 1) {
+        if (user) {
+            // if ( user && appointment && remoteUser) {
             setLoading(false);
             setError(null);
         }
-    }, [docId, patId])
+    }, [remoteUser])
 
     return (
-        user &&
+        // loading ? <Loader /> :
+        (user && remoteUser) &&
         <div className="waitingRoom">
-            <div className="app-time">
-                {
-                    error ?
-                        <>
-                            <p> { error } </p>
+            {
+                error ?
+                    <>
+                        <div className="app-time">
+                            <p className="app-time-error"> { error } </p>
                             <p> 
                                 Next Appoinment : &nbsp;
-                                <b> { new Date(user.appointments[user.appointments.length - 1].time).toLocaleDateString() }, </b>&nbsp;
-                                <b> { new Date(user.appointments[user.appointments.length - 1].time).toLocaleTimeString().substring(0, 5) } </b>
+                                <b> { new Date(user.upcomingApps[0].time).toLocaleDateString() }, </b>&nbsp;
+                                <b> { new Date(user.upcomingApps[0].time).toLocaleTimeString().substring(0, 5) } </b>
                             </p>
-                        </>
-                    :
-                        <>
-                            <p> { appointment.time } </p>
-                        </>
-                }
-            </div>
-            <Button loading={loading} type="primary"><Link to={{pathname: "/meeting", doc_id: docId, pat_id: patId}}>
-                Enter Meeting
-            </Link></Button>
+                        </div>
+                        <Button type="primary" disabled><Link to={{pathname: "/meeting", doc_id: docId, pat_id: patId}}>
+                            Enter Meeting
+                        </Link></Button>
+                    </>
+                :
+                    <>
+                        <div className="app-part-dtls">
+                            {
+                                user.isDoctor ?
+                                    <>
+                                        <ParticipantCard doctor={user} />
+                                        <ParticipantCard patient={remoteUser} appointment={appointment} />
+                                    </>
+                                :
+                                    <>
+                                        <ParticipantCard patient={user} appointment={appointment} />
+                                        <ParticipantCard doctor={remoteUser} />
+                                    </>
+                            }
+                        </div>
+                        <div className="app-time">
+                            <p> Date &nbsp; : &nbsp; <b> { new Date(appointment.time).toLocaleDateString().replaceAll("/", " - ") } </b></p>
+                            <p> Time &nbsp; : &nbsp; <b> { new Date(appointment.time).toLocaleTimeString().substring(0, 5) } </b> hrs</p>
+                        </div>
+                        <Button loading={loading} type="primary"><Link to={{pathname: "/meeting", doc_id: docId, pat_id: patId}}>
+                            Enter Meeting
+                        </Link></Button>
+                    </>
+            }
         </div>
     );
 }

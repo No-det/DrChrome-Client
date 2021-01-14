@@ -1,7 +1,16 @@
+.meetingRoom-videoContainer {
+  width: 75%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
 .part-dtls {
   display: flex;
+  width: 100%;
   justify-content: space-between;
-  padding: 2% 5%;
+  padding: 0% 5%;
 }
 .part-dtl p {
   margin: 0;
@@ -23,4 +32,77 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+.meet-video {
+  /* height: fit-content;
+  width: fit-content; */
+  height: 570px;
+  width: 1000px;
+  border-radius: 10px;
+  /* position: absolute; */
+  background: rgb(20, 20, 20);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  /* flex-direction: column; */
+}
+.meet-video-controls {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+}
+.meet-video-controls .material-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  font-size: 30px;
+  margin: 20px 10px;
+  cursor: pointer;
+  border-radius: 100px;
+}
+.video-controls-dim {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.414696px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8.29392px);
+}
+.video-controls-bright {
+  background: #ffffff;
+  color: tomato;
+}
+.meet-video-controls .material-icons:hover,
+.meet-video-controls-hang {
+  background: #ffffff;
+  color: tomato;
+}
+.meet-video-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  color: rgb(85, 85, 85);
+}
+.meet-video-loader {
+  height: 35px;
+  width: 35px;
+  border: 5px solid rgb(35, 35, 35);
+  border-top: 5px solid gray;
+  /* border-left: 5px solid linea; */
+  border-radius: 50%;
+  -webkit-animation: spin 1.5s linear infinite; /* Safari */
+  animation: spin 1.5s linear infinite;
+  margin-right: 10px;
+}
+@keyframes meet-loader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

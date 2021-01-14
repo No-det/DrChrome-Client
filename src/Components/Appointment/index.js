@@ -16,7 +16,7 @@ const Appointment = () => {
     {
       res = await axios.get(`http://localhost:8000/api/getUser/${id}`)
       setDoctor(res.data);
-      console.log(typeof(doctor))
+      console.log(doctor)
     }
   }, [])
 

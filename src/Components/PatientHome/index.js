@@ -14,9 +14,10 @@ const PatientHome = (props) => {
   const { user } = useContext(AuthContext);
   const [doctors, setDoctors] = useState([]);
   let nextApp, nextAppEnd;
-  if (user.appointments && user.appointments.length !== 0)
+  if (user.upcomingApps && user.upcomingApps.length !== 0)
   {
-    nextApp = new Date(user.appointments[user.appointments.length - 1].time)
+    nextApp = new Date(user.upcomingApps[0].time)
+    console.log(new Date(user.upcomingApps[0].time))
     nextAppEnd = new Date(nextApp);
     nextAppEnd.setMinutes(nextApp.getMinutes() + 30);
   }
@@ -55,13 +56,13 @@ const PatientHome = (props) => {
           {user && user.isVerified ? (
             <div className="patient__next__appointment">
               { nextApp ?
-              <>
-              <h3>Your Next Appointment</h3>
-              <p>{nextApp.toDateString().slice(4, nextApp.toDateString().length)}</p>
-              <p>
-                {nextApp.toLocaleTimeString().slice(0, nextApp.toLocaleTimeString().length - 3)} - {nextAppEnd.toLocaleTimeString().slice(0, nextAppEnd.toLocaleTimeString().length - 3)}
-              </p>
-              </>
+                <>
+                <h3>Your Next Appointment</h3>
+                <p>{nextApp.toDateString().slice(4, nextApp.toDateString().length)}</p>
+                <p>
+                  {nextApp.toLocaleTimeString().slice(0, nextApp.toLocaleTimeString().length - 3)} - {nextAppEnd.toLocaleTimeString().slice(0, nextAppEnd.toLocaleTimeString().length - 3)}
+                </p>
+                </>
               :
               <p>No Appoinments</p>
 }
