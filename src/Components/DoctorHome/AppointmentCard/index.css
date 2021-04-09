@@ -20,6 +20,11 @@
   width: 50px;
   border-radius: 50%;
 }
+.appCard-profile a {
+  display: flex;
+  align-items: center;
+  color: black;
+}
 .appCard-accept {
   display: flex;
   justify-content: space-between;

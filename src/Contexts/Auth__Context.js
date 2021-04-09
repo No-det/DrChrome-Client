@@ -29,6 +29,7 @@ const Auth__contextProvider = (props) => {
   const changeUser = (tok) => {
     sessionStorage.setItem("token", tok);
     setToken(tok);
+    console.log("TOKEN Changed !")
   };
 
   return (

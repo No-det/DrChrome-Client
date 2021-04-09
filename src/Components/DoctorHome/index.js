@@ -6,11 +6,12 @@ import AppointmentCard from "./AppointmentCard";
 import StatsCircle from "./StatsCircle";
 import { AuthContext } from "../../Contexts/Auth__Context";
 import Loader from '../Loader';
+import { Link } from "react-router-dom";
 
 const DoctorHome = () => {
   const { user } = useContext(AuthContext);
   const [consulted, setConsulted] = useState(0);
-  const [pending, setPending] = useState(0);
+  const [upcoming, setUpcoming] = useState(0);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -18,18 +19,20 @@ const DoctorHome = () => {
     if (user.appointments) {
       user.appointments.map(appointment => {
         setTotal(total + 1);
-        if (appointment.isProcessed) 
-          if (appointment.isAccepted)
-            if (appointment.isDone) setConsulted(consulted + 1)
-            else setPending(pending + 1)
+        // if (appointment.isProcessed) 
+        //   if (appointment.isAccepted)
+        //     if (appointment.isDone) setConsulted(consulted + 1)
+        //     else setUpcoming(upcoming + 1)
       });
+      setConsulted(user.previousApps.length);
+      setUpcoming(user.upcomingApps.length);
       setLoading(false);
     }
   }, [user.appointments])
 
   return (
     loading ? <Loader /> :
-    <div className="doc_main"> {console.log(consulted, pending, total)}
+    <div className="doc_main"> {console.log(consulted, upcoming, total)}
       <div className="docLeft">
         <div className="docLeft-1">
           <div className="doc_search">
@@ -45,7 +48,7 @@ const DoctorHome = () => {
         <div className="docLeft-2">
           <div className="greetingCard">
             <p>
-              Good Morning, <em>Dr. {user.name}</em>
+              Good Morning, <Link to="/profile"><em>Dr. {user.name}</em></Link>
             </p>
             <p style={{ fontWeight: 400 }}>Have a good day at work!</p>
           </div>
@@ -76,21 +79,22 @@ const DoctorHome = () => {
       </div>
       <div className="docRight">
         <div className="docDetails">
-          <p>Dr. {user.name}</p>
-          <img
-            // src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg"
-            src={user.image}
-            alt={user.name}
-            style={{ marginRight: 10 }}
-          />
+          <Link>
+            <p>Dr. {user.name}</p>
+            <img
+              src={user.image}
+              alt={user.name}
+              style={{ marginRight: 10 }}
+            />
+          </Link>
         </div>
         <div className="lastReport">
           <h2>Last day's report</h2>
-          <StatsCircle consulted={consulted} pending={pending} />
+          <StatsCircle total={total} consulted={consulted} upcoming={upcoming} />
         </div>
         <div className="lastReport">
           <h2>Monthly report</h2>
-          <StatsCircle consulted={consulted} pending={pending} />
+          <StatsCircle total={total} consulted={consulted} upcoming={upcoming} />
         </div>
       </div>
     </div>

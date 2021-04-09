@@ -16,7 +16,7 @@ export default function Navbar(props) {
         home
       </Link>
       <Link
-        to="/appointment"
+        to="/profile"
         className={selected === 2 ? `material-icons active` : `material-icons`}
         onClick={() => setSelected(2)}
       >

@@ -166,7 +166,7 @@
   font-weight: 500;
 }
 
-.docDetails {
+.docDetails a {
   flex: 0.1;
   display: flex;
   align-items: center;
@@ -183,6 +183,7 @@
 .docDetails p {
   font-size: 18px;
   font-weight: 500;
+  color: #000000;
 }
 
 .lastReport {

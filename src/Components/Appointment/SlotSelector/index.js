@@ -20,7 +20,6 @@ export default function SlotSelector (props) {
                 "slotTime",
                 new Date(`${getMonth[slotDate.getMonth()]} ${slotDate.getDate()}, ${slotDate.getFullYear()} ${slotTime}`)
             )
-        console.log(typeof({}))
     }, [slotDate, slotTime])
 
     useEffect(() => {
@@ -29,8 +28,8 @@ export default function SlotSelector (props) {
             setLoaded(true);
     }, [props.doctor.slots, props.doctor.appointments])
 
-    return (
-    props.doctor.slots ?
+    return <>
+    { props.doctor.slots &&
     <div className="slotSelector">
         <div className="monthSelector">
             <div className="monthSlot">{getMonth[slotDate.getMonth()]}</div>
@@ -57,11 +56,11 @@ export default function SlotSelector (props) {
                 </div>
             </div>
             <div className="timeSelector">
-            {loaded ?
+            {
                 [0, 1, 2, 3, 4, 5, 6].map(i =>
                     <div className="dayTimeBlock">
                         {
-                            Object.keys(props.doctor.slots).map(slot => {
+                            Object.keys(props.doctor.slots).map(slot => 
                             //     props.doctor.appointments.map(appointment => {
                             //         appTime = new Date(appointment.time);
                             //         checkTime = new Date(slotWeek[i]);
@@ -74,19 +73,20 @@ export default function SlotSelector (props) {
                                         className={(slotDate.getDate() === slotWeek[i].getDate() && slotTime === slot.substring(0, 5)) ? "timeBlock-selected" : "timeBlock-available"} 
                                         onClick={() => {setslotTime(slot.substring(0, 5)); setslotDate(slotWeek[i]); } }
                                     >
-                                            { slot.substring(0, 5) } hrs { console.log(slot.substring(0, 5))}
+                                            { slot.substring(0, 5) } hrs
                                     </p> 
                                 :
                                     <p className="timeBlock-notAvailable" onClick={() => alert("Time Slot not Available")}>
                                         { slot.substring(0, 5) } hrs
                                     </p>
-                            })
+                            )
                         }
                     </div>
-                ) : null
+                )
             }
             </div>
         </div>
-    </div> : <></>
-    );
+    </div>
+    }
+    </>
 }

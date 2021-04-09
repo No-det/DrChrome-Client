@@ -2,6 +2,7 @@ import "./index.css";
 import {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 import { AuthContext } from "../../../Contexts/Auth__Context";
+import { Link } from "react-router-dom";
 let res, appTime;
 
 const AppointmentCard = (props) => {
@@ -18,13 +19,13 @@ const AppointmentCard = (props) => {
       }
       else {
         setAppointment({...appointment, isProcessed: true})
-        res = await axios.post(`http://localhost:8000/api/updateApp/${props.user}`, {_id: appointment._id, isProcessed: true});
+        res = await axios.post(`http://localhost:8000/api/updateApp/${props.user}`, {_id: appointment._id, isAccepted: false, isProcessed: true});
         changeUser(res.data.token);
       }
     else
       if (window.confirm(`Are you sure you want to decline ${patient.name}'s appointment ?`)) {
         setAppointment({...appointment, isProcessed: true})
-        res = await axios.post(`http://localhost:8000/api/updateApp/${props.user}`, {_id: appointment._id, isProcessed: true});
+        res = await axios.post(`http://localhost:8000/api/updateApp/${props.user}`, {_id: appointment._id, isAccepted: false, isProcessed: true});
         changeUser(res.data.token);
       }
   }
@@ -40,14 +41,15 @@ const AppointmentCard = (props) => {
     <>
     {(patient && appointment && appTime) &&
     <div className="appCardMain">
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <img
-          // src="https://images.vexels.com/media/users/3/145908/preview2/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg"
-          src={patient.image}
-          alt={patient.name}
-          style={{ marginRight: 10 }}
-        ></img>
-        <p>{patient.name}</p>
+      <div className="appCard-profile">
+        <Link to="/profile">
+          <img
+            src={patient.image}
+            alt={patient.name}
+            style={{ marginRight: 10 }}
+          ></img>
+          <p>{patient.name}</p>
+        </Link>
       </div>
       <p>{appTime.toDateString().slice(4, appTime.toDateString().length)}</p>
       <p>{appTime.toLocaleTimeString().slice(0, appTime.toLocaleTimeString().length - 3)}</p>
