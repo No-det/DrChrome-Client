@@ -1,11 +1,11 @@
 import "./index.css";
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import bxSearch from "@iconify/icons-bx/bx-search";
 import AppointmentCard from "./AppointmentCard";
 import StatsCircle from "./StatsCircle";
 import { AuthContext } from "../../Contexts/Auth__Context";
-import Loader from '../Loader';
+import Loader from "../Loader";
 import { Link } from "react-router-dom";
 
 const DoctorHome = () => {
@@ -16,23 +16,27 @@ const DoctorHome = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user.appointments) {
-      user.appointments.map(appointment => {
+    console.log(user);
+    if (user?.appointments.length > 0) {
+      user.appointments.map((appointment) => {
         setTotal(total + 1);
-        // if (appointment.isProcessed) 
+        // if (appointment.isProcessed)
         //   if (appointment.isAccepted)
         //     if (appointment.isDone) setConsulted(consulted + 1)
         //     else setUpcoming(upcoming + 1)
       });
       setConsulted(user.previousApps.length);
       setUpcoming(user.upcomingApps.length);
-      setLoading(false);
     }
-  }, [user.appointments])
+    setLoading(false);
+  }, [user?.appointments]);
 
-  return (
-    loading ? <Loader /> :
-    <div className="doc_main"> {console.log(consulted, upcoming, total)}
+  return loading ? (
+    <Loader />
+  ) : (
+    <div className="doc_main">
+      {" "}
+      {console.log(consulted, upcoming, total)}
       <div className="docLeft">
         <div className="docLeft-1">
           <div className="doc_search">
@@ -48,7 +52,10 @@ const DoctorHome = () => {
         <div className="docLeft-2">
           <div className="greetingCard">
             <p>
-              Good Morning, <Link to="/profile"><em>Dr. {user.name}</em></Link>
+              Good Morning,{" "}
+              <Link to="/profile">
+                <em>Dr. {user.name}</em>
+              </Link>
             </p>
             <p style={{ fontWeight: 400 }}>Have a good day at work!</p>
           </div>
@@ -66,14 +73,15 @@ const DoctorHome = () => {
               <p>Time</p>
               <p>Status</p>
             </div>
-              {
-                user.appointments ?
-                user.appointments.map(appointment =>
-                  appointment.isDone ?
-                    <AppointmentCard appointment={appointment} user={user._id} />
-                  : null
-                ) : <p>loading...</p>
-              }
+            {user.appointments ? (
+              user.appointments.map((appointment) =>
+                appointment.isDone ? (
+                  <AppointmentCard appointment={appointment} user={user._id} />
+                ) : null
+              )
+            ) : (
+              <p>loading...</p>
+            )}
           </div>
         </div>
       </div>
@@ -81,24 +89,28 @@ const DoctorHome = () => {
         <div className="docDetails">
           <Link>
             <p>Dr. {user.name}</p>
-            <img
-              src={user.image}
-              alt={user.name}
-              style={{ marginRight: 10 }}
-            />
+            <img src={user.image} alt={user.name} style={{ marginRight: 10 }} />
           </Link>
         </div>
         <div className="lastReport">
           <h2>Last day's report</h2>
-          <StatsCircle total={total} consulted={consulted} upcoming={upcoming} />
+          <StatsCircle
+            total={total}
+            consulted={consulted}
+            upcoming={upcoming}
+          />
         </div>
         <div className="lastReport">
           <h2>Monthly report</h2>
-          <StatsCircle total={total} consulted={consulted} upcoming={upcoming} />
+          <StatsCircle
+            total={total}
+            consulted={consulted}
+            upcoming={upcoming}
+          />
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default DoctorHome;

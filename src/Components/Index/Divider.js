@@ -2,29 +2,20 @@ import Design1 from "./Designs/design";
 import { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { AuthContext } from "../../Contexts/Auth__Context";
-import queryString from "query-string";
+import { API_URL } from "../../utils/constants";
 
 export default function Divider(props) {
   const { user } = useContext(AuthContext);
-
   const [isDoctor, setIsDoctor] = useState(false);
 
-  useEffect(async () => {
-    const { token } = queryString.parse(props.location.search);
-    if (token) {
-      sessionStorage.setItem("token", token);
-    }
-  }, [props.location, props.history]);
-
   const onFinish = async (val) => {
-    const url = `http://localhost:8000/api/isDoctor/${user._id}`;
+    const url = `${API_URL}/api/isDoctor/${user.uid}`;
     const newUser = {
       isDoctor: val,
     };
     console.log(newUser);
     const response = await axios.post(url, newUser);
     if (response.statusText === "OK") {
-      console.log("Hello There");
       isDoctor ? props.history.push("/doctor") : props.history.push("/patient");
     }
   };

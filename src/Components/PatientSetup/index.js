@@ -23,7 +23,7 @@ const PatientSetup = (props) => {
       dob: new Date(values.dob.format("DD/MM/YYYY")),
       isVerified: true,
     };
-    const url = "http://localhost:8000/api/addUser";
+    const url = "http://localhost:8000/api/updateUser";
     const response = await axios.post(url, newUser);
     setTimeout(() => {
       setUploading(false);
@@ -38,7 +38,7 @@ const PatientSetup = (props) => {
 
   useEffect(() => {
     setupForm.current.setFieldsValue({ ...user });
-  }, [user])
+  }, [user]);
 
   return (
     <div className="signup2__container">
@@ -204,7 +204,12 @@ const PatientSetup = (props) => {
               offset: 6,
             }}
           >
-            <Button className="form-submit" type="primary" htmlType="submit" loading={uploading}>
+            <Button
+              className="form-submit"
+              type="primary"
+              htmlType="submit"
+              loading={uploading}
+            >
               Submit
             </Button>
           </Form.Item>

@@ -1,42 +1,23 @@
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
+import { auth } from "../Firebase/firebase";
 
 export const AuthContext = createContext();
 
 const Auth__contextProvider = (props) => {
-  const [token, setToken] = useState(sessionStorage.getItem("token"));
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const newToken = sessionStorage.getItem("token");
-    if (newToken) {
-      setToken(newToken);
-    }
-    const url = "http://localhost:8000/auth/user";
-    axios
-      .get(url, {
-        headers: {
-          token: token,
-        },
-      })
-      .then(({ data }) => {
-        const { user } = data.user;
-        setUser(user, () => console.log(user));
-      })
-      .catch((err) => console.log(err));
-  }, [token]);
-
-  const changeUser = (tok) => {
-    sessionStorage.setItem("token", tok);
-    setToken(tok);
-    console.log("TOKEN Changed !")
-  };
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      setUser(user);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ token, user, setUser, setToken, changeUser }}
-    >
-      {props.children}
+    <AuthContext.Provider value={{ user, setUser }}>
+      {!loading && props.children}
     </AuthContext.Provider>
   );
 };

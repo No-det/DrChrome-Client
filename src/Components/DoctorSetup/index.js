@@ -5,7 +5,15 @@ import { useContext, useState, useRef, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
 const { Option } = Select;
-let slots = ["10:00 - 11:00", "11:00 - 12:00", "12:00 - 13:00", "13:00 - 14:00", "14:00 - 15:00", "15:00 - 16:00", "16:00 - 17:00"]
+let slots = [
+  "10:00 - 11:00",
+  "11:00 - 12:00",
+  "12:00 - 13:00",
+  "13:00 - 14:00",
+  "14:00 - 15:00",
+  "15:00 - 16:00",
+  "16:00 - 17:00",
+];
 
 const DoctorSetup = (props) => {
   const { user, changeUser } = useContext(AuthContext);
@@ -17,13 +25,10 @@ const DoctorSetup = (props) => {
 
   const onFinish = async (values) => {
     setUploading(true);
-    slots.map(slot => {
-        if (values[slot] === true)
-          setselectedSlots(selectedSlots.push(true))
-        else
-          setselectedSlots(selectedSlots.push(false))
-      }
-    )
+    slots.map((slot) => {
+      if (values[slot] === true) setselectedSlots(selectedSlots.push(true));
+      else setselectedSlots(selectedSlots.push(false));
+    });
     const newUser = {
       ...user,
       ...values,
@@ -40,7 +45,7 @@ const DoctorSetup = (props) => {
       isVerified: true,
     };
     console.log(newUser);
-    const url = "http://localhost:8000/api/addUser";
+    const url = "http://localhost:8000/api/updateUser";
     const response = await axios.post(url, newUser);
     setTimeout(() => {
       setUploading(false);
@@ -55,7 +60,7 @@ const DoctorSetup = (props) => {
 
   useEffect(() => {
     setupForm.current.setFieldsValue({ ...user });
-  }, [user])
+  }, [user]);
 
   return (
     <div className="signup2__container">
@@ -79,7 +84,6 @@ const DoctorSetup = (props) => {
             label="Name"
             hasFeedback
             className="form__item"
-            
             rules={[
               {
                 required: true,
@@ -163,16 +167,15 @@ const DoctorSetup = (props) => {
             <Input placeholder="Enter Your Years of Experience" />
           </Form.Item>
 
-            <div className="form-slot-select">
-              <label>Select your Available Slots : </label>
-              {
-                slots.map(slot =>
-                  <Form.Item name={slot}>
-                  <Switch checkedChildren={slot} unCheckedChildren={slot} />
-                  </Form.Item>
-                )
-              }
-            </div><br />
+          <div className="form-slot-select">
+            <label>Select your Available Slots : </label>
+            {slots.map((slot) => (
+              <Form.Item name={slot}>
+                <Switch checkedChildren={slot} unCheckedChildren={slot} />
+              </Form.Item>
+            ))}
+          </div>
+          <br />
           <Form.Item
             name="gender"
             label="Gender"
@@ -197,7 +200,12 @@ const DoctorSetup = (props) => {
               offset: 6,
             }}
           >
-            <Button className="form-submit" type="primary" htmlType="submit" loading={uploading}>
+            <Button
+              className="form-submit"
+              type="primary"
+              htmlType="submit"
+              loading={uploading}
+            >
               Submit
             </Button>
           </Form.Item>

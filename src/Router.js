@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import PatientHome from "./Components/PatientHome";
 import DoctorHome from "./Components/DoctorHome";
 import Appointment from "./Components/Appointment";
@@ -15,7 +15,6 @@ import PrivateRoute from "./Contexts/Private__Route";
 import PatientProfile from "./Components/PatientProfile";
 import MeetingRoom from "./Components/MeetingRoom";
 import WaitingRoom from "./Components/WaitingRoom";
-
 
 function Router() {
   return (
@@ -44,14 +43,15 @@ function Router() {
             </Switch>
           </Layout>
         </Route>
-        <Route path={["/", "/signup", "/patientSetup", "/doctorSetup", "/isDoctor/"]}>
+        <Route
+          path={["/", "/signup", "/patientSetup", "/doctorSetup", "/isDoctor/"]}
+        >
           <Switch>
             <Route exact path="/" component={Signin} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/patientSetup" component={PatientSetup} />
             <Route exact path="/doctorSetup" component={DoctorSetup} />
-            <PrivateRoute exact path="/isDoctor/" component={Divider} />
-            {/* <Route exact path="/room/:id" component={VideoConf} /> */}
+            <Route exact path="/isDoctor/" component={Divider} />
             <Route component={NotFound} />
           </Switch>
         </Route>
