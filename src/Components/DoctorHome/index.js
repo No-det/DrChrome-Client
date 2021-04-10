@@ -7,36 +7,45 @@ import StatsCircle from "./StatsCircle";
 import { AuthContext } from "../../Contexts/Auth__Context";
 import Loader from "../Loader";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const DoctorHome = () => {
   const { user } = useContext(AuthContext);
+  const [userData, setUserData] = useState(null);
   const [consulted, setConsulted] = useState(0);
   const [upcoming, setUpcoming] = useState(0);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(user);
-    if (user?.appointments.length > 0) {
-      user.appointments.map((appointment) => {
+    console.log("useefff")
+    fetchUserData();
+    console.log(userData)
+  }, []);
+
+  const fetchUserData = async () => {
+    console.log("in async fun")
+    const response = await axios.get(`http://localhost:8000/api/getUser/${user.uid}`);
+    setUserData(response.data);
+    if (userData?.appointments.length > 0) {
+      userData.appointments.map((appointment) => {
         setTotal(total + 1);
         // if (appointment.isProcessed)
         //   if (appointment.isAccepted)
         //     if (appointment.isDone) setConsulted(consulted + 1)
         //     else setUpcoming(upcoming + 1)
       });
-      setConsulted(user.previousApps.length);
-      setUpcoming(user.upcomingApps.length);
+      setConsulted(userData.previousApps.length);
+      setUpcoming(userData.upcomingApps.length);
     }
     setLoading(false);
-  }, [user?.appointments]);
+  }
 
-  return loading ? (
+  return loading && userData ? (
     <Loader />
   ) : (
     <div className="doc_main">
-      {" "}
-      {console.log(consulted, upcoming, total)}
+      {/* {console.log(consulted, upcoming, total)} */}
       <div className="docLeft">
         <div className="docLeft-1">
           <div className="doc_search">
@@ -52,7 +61,7 @@ const DoctorHome = () => {
         <div className="docLeft-2">
           <div className="greetingCard">
             <p>
-              Good Morning,{" "}
+              Good Morning,
               <Link to="/profile">
                 <em>Dr. {user.name}</em>
               </Link>
@@ -61,7 +70,7 @@ const DoctorHome = () => {
           </div>
           <div className="totAppBtn">
             <p>Total Appointments</p>
-            <p>{user.appointments ? user.appointments.length : 0}</p>
+            <p>{userData.appointments ? userData.appointments.length : 0}</p>
           </div>
         </div>
         <div className="docLeft-3">
@@ -73,10 +82,10 @@ const DoctorHome = () => {
               <p>Time</p>
               <p>Status</p>
             </div>
-            {user.appointments ? (
-              user.appointments.map((appointment) =>
+            {userData.appointments ? (
+              userData.appointments.map((appointment) =>
                 appointment.isDone ? (
-                  <AppointmentCard appointment={appointment} user={user._id} />
+                  <AppointmentCard appointment={appointment} user={user.uid} />
                 ) : null
               )
             ) : (

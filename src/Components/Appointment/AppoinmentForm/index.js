@@ -14,7 +14,6 @@ const AppointmentForm =() => {
   const [doctorID, setDoctorID] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [data, setData] = useState(null);
-  const [url, setUrl] = useState("")
 
   const { user, changeUser } = useContext(AuthContext);
 
@@ -32,15 +31,11 @@ const AppointmentForm =() => {
 
   useEffect(() => {
     setDoctorID(window.location.pathname.split("/")[2]);
-    console.log(user)
-    setUrl(`http://localhost:8000/api/appointment/${user._id}`);
-    console.log(url)  
-  }, [window.location.pathname, user._id])
+  }, [])
 
   useEffect(async () => {
     if (data !== null) {
       if (localStorage.getItem("slotTime") !== "invalid") {
-        console.log(url)
         const res = await axios.post(`http://localhost:8000/api/appointment/${user._id}`, data);
         console.log(res)
         if (res.status === 200) {
@@ -52,7 +47,7 @@ const AppointmentForm =() => {
       }
       else alert("Please select a valid slot");
     }
-  }, [data])
+  }, [data, user])
 
   return (
     redirect ? <Redirect to="/patient/" /> :
