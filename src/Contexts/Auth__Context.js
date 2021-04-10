@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 const Auth__contextProvider = (props) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userUpdated, setUserUpdated] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -13,10 +14,10 @@ const Auth__contextProvider = (props) => {
       setLoading(false);
     });
     return unsubscribe;
-  }, []);
+  }, [userUpdated]);
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, setUserUpdated }}>
       {!loading && props.children}
     </AuthContext.Provider>
   );

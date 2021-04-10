@@ -10,25 +10,26 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const DoctorHome = () => {
-  const { user } = useContext(AuthContext);
   const [userData, setUserData] = useState(null);
   const [consulted, setConsulted] = useState(0);
   const [upcoming, setUpcoming] = useState(0);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
-    console.log("useefff")
     fetchUserData();
-    console.log(userData)
   }, []);
 
   const fetchUserData = async () => {
-    console.log("in async fun")
-    const response = await axios.get(`http://localhost:8000/api/getUser/${user.uid}`);
+    const response = await axios.get(
+      `http://localhost:8000/api/getUser/${user.uid}`
+    );
     setUserData(response.data);
-    if (userData?.appointments.length > 0) {
-      userData.appointments.map((appointment) => {
+    console.log(response.data);
+    if (response?.data?.appointments.length > 0) {
+      response?.data?.appointments.map((appointment) => {
         setTotal(total + 1);
         // if (appointment.isProcessed)
         //   if (appointment.isAccepted)
@@ -39,9 +40,9 @@ const DoctorHome = () => {
       setUpcoming(userData.upcomingApps.length);
     }
     setLoading(false);
-  }
+  };
 
-  return loading && userData ? (
+  return loading ? (
     <Loader />
   ) : (
     <div className="doc_main">
