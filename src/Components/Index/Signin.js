@@ -17,12 +17,36 @@ export default function Signin(props) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { setUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const result = await auth.signInWithEmailAndPassword(email, password);
+      if (result.user) {
+        //
+        //
+        // !NEED TO MAKE IT EFFICIENT
+        //
+        //
+        axios
+          .get(`${API_URL}/api/getUser/${user.uid}`)
+          .then((res) => {
+            if (res.data.isDoctor === undefined) {
+              props.history.push("/isDoctor");
+            } else if (res.data.isDoctor) {
+              props.history.push("/doctor");
+            } else if (!res.data.isDoctor) {
+              props.history.push("/patient");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setError(
+              "Some error occured while logging in. Please try again later"
+            );
+          });
+      }
     } catch (err) {
       if (err.code) {
         switch (err.code) {
@@ -58,7 +82,6 @@ export default function Signin(props) {
         isDoctor: undefined,
       };
       const response = await axios.post(`${API_URL}/auth/add-user`, newUser);
-      setUser(response.data.user);
       if (result.user) props.history.push("/isDoctor");
     } catch (err) {
       if (err.code) {
@@ -71,6 +94,24 @@ export default function Signin(props) {
           default:
             setError("Some Error Occured. Try Again Later");
         }
+      } else if (err.response.data.message.includes("User already exists")) {
+        axios
+          .get(`${API_URL}/api/getUser/${user.uid}`)
+          .then((res) => {
+            if (res.data.isDoctor === undefined) {
+              props.history.push("/isDoctor");
+            } else if (res.data.isDoctor) {
+              props.history.push("/doctor");
+            } else if (!res.data.isDoctor) {
+              props.history.push("/patient");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setError(
+              "Some error occured while logging in. Please try again later"
+            );
+          });
       } else {
         setError("Some error occured while logging in. Please try again later");
       }

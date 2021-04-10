@@ -10,11 +10,9 @@ export default function Divider(props) {
 
   const onFinish = async (val) => {
     const url = `${API_URL}/api/isDoctor/${user.uid}`;
-    const newUser = {
+    const response = await axios.post(url, {
       isDoctor: val,
-    };
-    console.log(newUser);
-    const response = await axios.post(url, newUser);
+    });
     if (response.statusText === "OK") {
       isDoctor ? props.history.push("/doctor") : props.history.push("/patient");
     }

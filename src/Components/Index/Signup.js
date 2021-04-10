@@ -1,9 +1,12 @@
 import { Alert } from "antd";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { auth } from "../../Firebase/firebase";
+import { AuthContext } from "../../Contexts/Auth__Context";
+import { auth, signInWithGoogle } from "../../Firebase/firebase";
 import { API_URL } from "../../utils/constants";
+
+import GoogleIcon from "../../assets/google.svg";
 
 import Design1 from "./Designs/design";
 import "./index.css";
@@ -13,6 +16,8 @@ export default function Signup(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const { user } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     try {
@@ -33,6 +38,55 @@ export default function Signup(props) {
       } else {
         setError("Some error occured. Please try again later.");
       }
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithGoogle();
+      const newUser = {
+        name: result.user.displayName,
+        email: result.user.email,
+        uid: result.user.uid,
+        emailVerified: true,
+        image: result.user.photoURL,
+        isDoctor: undefined,
+      };
+      const response = await axios.post(`${API_URL}/auth/add-user`, newUser);
+      if (result.user) props.history.push("/isDoctor");
+    } catch (err) {
+      if (err.code) {
+        switch (err.code) {
+          case "auth/user-disabled":
+            setError(err.message);
+            break;
+          case "auth/popup-closed-by-user":
+            break;
+          default:
+            setError("Some Error Occured. Try Again Later");
+        }
+      } else if (err.response.data.message.includes("User already exists")) {
+        axios
+          .get(`${API_URL}/api/getUser/${user.uid}`)
+          .then((res) => {
+            if (res.data.isDoctor === undefined) {
+              props.history.push("/isDoctor");
+            } else if (res.data.isDoctor) {
+              props.history.push("/doctor");
+            } else if (!res.data.isDoctor) {
+              props.history.push("/patient");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setError(
+              "Some error occured while logging in. Please try again later"
+            );
+          });
+      } else {
+        setError("Some error occured while logging in. Please try again later");
+      }
+      console.log(err);
     }
   };
 
@@ -76,6 +130,13 @@ export default function Signup(props) {
               <input type="submit" value="Next" />
             </Link>
           </form>
+          <p>Or</p>
+          <div className="googleSignContainer">
+            <Link to="#" onClick={handleGoogleSignIn}>
+              <img src={GoogleIcon} alt="Signin with Google" />
+              <p>Sign in with Google</p>
+            </Link>
+          </div>
           <Link to="/signupDoctor">Signup as a Doctor</Link>
         </div>
       </div>
