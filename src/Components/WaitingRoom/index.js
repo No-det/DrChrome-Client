@@ -6,7 +6,6 @@ import { Link, withRouter } from 'react-router-dom';
 // import Loader from '../Loader';
 import axios from 'axios';
 import ParticipantCard from './ParticipantCard';
-import Loader from '../Loader';
 
 const WaitingRoom = (props) => {
     const { user } = useContext(AuthContext);
@@ -18,7 +17,7 @@ const WaitingRoom = (props) => {
     const [error, setError] = useState(null);
     let res;
 
-    useEffect( async () => {
+    const getRemoteUserData = async () => {
         if (user && user.upcomingApps && user.upcomingApps.length !== 0) {
             setAppointment(user.upcomingApps[0]);
             setDocId(user.upcomingApps[0].doctorID);
@@ -34,6 +33,10 @@ const WaitingRoom = (props) => {
             if (docId === "" && patId === "" && Object.keys(appointment).length === 0)
                 setError("You have no meetings scheduled today.")
         }
+    }
+
+    useEffect(() => {
+        getRemoteUserData();
     }, [user.appointments])
 
     useEffect(() => {
@@ -45,7 +48,6 @@ const WaitingRoom = (props) => {
     }, [remoteUser])
 
     return (
-        // loading ? <Loader /> :
         (user && remoteUser) &&
         <div className="waitingRoom">
             {

@@ -2,12 +2,10 @@ import "./index.css";
 // import Slot from './Slot';
 import AppoinmentForm from "./AppoinmentForm";
 import SlotSelector from "./SlotSelector";
-import {useEffect, useState, useContext} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
-import { AuthContext } from "../../Contexts/Auth__Context";
 
 const Appointment = () => {
-  const { user } = useContext(AuthContext);
 
   const [doctor, setDoctor] = useState({});
   // eslint-disable-next-line

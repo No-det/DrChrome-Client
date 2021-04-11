@@ -17,7 +17,7 @@ const MeetingRoom = (props) => {
     const [isHangedUp, setIsHangedUp] = useState(false)
     const remoteVideo = useRef(null);
     const localVideo = useRef(null);
-    let res, peer;
+    let res;
 
     useEffect(() => {
         navigator.mediaDevices.getUserMedia({video: true, audio: true});
@@ -29,7 +29,7 @@ const MeetingRoom = (props) => {
         }
     }, [])
 
-    useEffect( async () => {
+    const getDocPatData = async () => {
         if (props.location.doc_id.length > 1 && props.location.pat_id.length > 1) {
             console.log(props.location.doc_id);
             res = await axios.get(`http://localhost:8000/api/getUser/${props.location.doc_id}`);
@@ -38,6 +38,10 @@ const MeetingRoom = (props) => {
             setPatient(res.data);
             console.log(Object.keys(patient).length === 0, doctor);
         }
+    }
+
+    useEffect(() => {
+        getDocPatData();
     }, [props.location])
 
     useEffect(() => {

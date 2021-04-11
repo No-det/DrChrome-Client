@@ -16,7 +16,7 @@ let slots = [
 ];
 
 const DoctorSetup = (props) => {
-  const { user, changeUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   // const [selectedSlots, setselectedSlots] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [redirect, setRedirect] = useState(false);
@@ -27,7 +27,7 @@ const DoctorSetup = (props) => {
   const onFinish = async (values) => {
     let selectedSlots = []
     setUploading(true);
-    slots.map((slot) => {
+    slots.forEach((slot) => {
       if (values[slot] === true) selectedSlots.push(true);
       else selectedSlots.push(false);
     });

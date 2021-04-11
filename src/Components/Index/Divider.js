@@ -1,5 +1,5 @@
 import Design1 from "./Designs/design";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../Contexts/Auth__Context";
 import { API_URL } from "../../utils/constants";

@@ -1,5 +1,4 @@
 import "./index.css";
-import {useEffect} from 'react';
 
 const StatsCircle = (props) => {
   const CircleStyle = {

@@ -30,11 +30,15 @@ const AppointmentCard = (props) => {
       }
   }
 
-  useEffect(async () => {
+  const getPatientData = async () => {
     setAppointment(props.appointment);
     res = await axios.get(`http://localhost:8000/api/getUser/${props.appointment.patientID}`);
     setPatient(res.data);
     appTime = new Date(props.appointment.time);
+  }
+
+  useEffect(() => {
+    getPatientData();
   }, [])
 
   return (

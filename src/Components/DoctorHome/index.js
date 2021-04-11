@@ -5,48 +5,32 @@ import bxSearch from "@iconify/icons-bx/bx-search";
 import AppointmentCard from "./AppointmentCard";
 import StatsCircle from "./StatsCircle";
 import { AuthContext } from "../../Contexts/Auth__Context";
-import Loader from "../Loader";
 import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 const DoctorHome = () => {
-  const [userData, setUserData] = useState(null);
+  // const [userData, setUserData] = useState(null);
   const [consulted, setConsulted] = useState(0);
+  const [cancelled, setCancelled] = useState(0);
   const [upcoming, setUpcoming] = useState(0);
   const [total, setTotal] = useState(0);
-  const [loading, setLoading] = useState(true);
-
-  const { user } = useContext(AuthContext);
+  const { user, userData } = useContext(AuthContext);
 
   useEffect(() => {
-    fetchUserData();
-  }, []);
+    if (Object.keys(userData).length === 0)
+      setTotal(userData.appointments.length);
+      userData.appointments.forEach(appointment => {
+        if (appointment.isProcessed) {
+          if (appointment.isAccepted)
+            if (appointment.isDone) setConsulted(consulted + 1)
+            else setUpcoming(upcoming + 1)
+          else setCancelled(cancelled + 1)
+        }
+      })
+  }, [userData]);
 
-  const fetchUserData = async () => {
-    const response = await axios.get(
-      `http://localhost:8000/api/getUser/${user.uid}`
-    );
-    setUserData(response.data);
-    console.log(response.data);
-    if (response?.data?.appointments.length > 0) {
-      response?.data?.appointments.map((appointment) => {
-        setTotal(total + 1);
-        // if (appointment.isProcessed)
-        //   if (appointment.isAccepted)
-        //     if (appointment.isDone) setConsulted(consulted + 1)
-        //     else setUpcoming(upcoming + 1)
-      });
-      setConsulted(userData.previousApps.length);
-      setUpcoming(userData.upcomingApps.length);
-    }
-    setLoading(false);
-  };
-
-  return loading ? (
-    <Loader />
-  ) : (
-    <div className="doc_main">
-      {/* {console.log(consulted, upcoming, total)} */}
+  return <div className="doc_main">
+      {console.log(Object.keys(userData).length === 0)}
       <div className="docLeft">
         <div className="docLeft-1">
           <div className="doc_search">
@@ -120,7 +104,6 @@ const DoctorHome = () => {
         </div>
       </div>
     </div>
-  );
 };
 
 export default DoctorHome;

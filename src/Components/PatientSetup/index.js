@@ -4,7 +4,6 @@ import axios from "axios";
 import { AuthContext } from "../../Contexts/Auth__Context";
 import { useContext, useState, useRef, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import DoctorSetup from "../DoctorSetup";
 
 const { Option } = Select;
 

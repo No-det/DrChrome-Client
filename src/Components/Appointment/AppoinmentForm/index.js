@@ -48,10 +48,8 @@ const AppointmentForm =() => {
     setDoctorID(window.location.pathname.split("/")[2]);
   }, [])
 
-  useEffect(async () => {
-    console.log("@async-start")
+  useEffect(() => {
     if (data !== null) sendAppointmentData();
-    console.log("@async-end")
   }, [data])
 
   return (

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { Alert } from "antd";
 
@@ -81,7 +81,7 @@ export default function Signin(props) {
         image: result.user.photoURL,
         isDoctor: undefined,
       };
-      const response = await axios.post(`${API_URL}/auth/add-user`, newUser);
+      await axios.post(`${API_URL}/auth/add-user`, newUser);
       if (result.user) props.history.push("/isDoctor");
     } catch (err) {
       if (err.code) {

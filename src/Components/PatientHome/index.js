@@ -17,10 +17,11 @@ const PatientHome = (props) => {
   let nextApp, nextAppEnd;
 
   useEffect(() => {
-    fetchUserData();
+    getUserData();
+    getAllDoctors();
   }, []);
 
-  const fetchUserData = async () => {
+  const getUserData = async () => {
     const response = await axios.get(
       `http://localhost:8000/api/getUser/${user.uid}`
     );
@@ -34,11 +35,11 @@ const PatientHome = (props) => {
       nextAppEnd.setMinutes(nextApp.getMinutes() + 30);
     }
   };
-  // eslint-disable-next-line
-  useEffect(async() => {
+
+  const getAllDoctors = async () => {
     let res = await axios.get("http://localhost:8000/api/getDoctors");
     setDoctors(res.data);
-  }, [])
+  }
 
   return (
     user && userData && 

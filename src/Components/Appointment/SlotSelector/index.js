@@ -7,10 +7,7 @@ import { weekday, getWeek, getMonth } from "./app";
 export default function SlotSelector (props) {
     const [slotTime, setslotTime] = useState("Not Selected");
     const [slotDate, setslotDate] = useState(new Date());
-    const [loaded, setLoaded] = useState(false);
-    const [appCount, setAppCount] = useState(0);
     const slotWeek = getWeek();
-    let appTime, checkTime;
 
     useEffect(() => {
         if (slotTime === "Not Selected")
@@ -21,12 +18,6 @@ export default function SlotSelector (props) {
                 new Date(`${getMonth[slotDate.getMonth()]} ${slotDate.getDate()}, ${slotDate.getFullYear()} ${slotTime}`)
             )
     }, [slotDate, slotTime])
-
-    useEffect(() => {
-        // if (typeof(props.doctor.slots) === "object" && props.doctor.appointments && props.doctor.appointments.length !== 0)
-        if (typeof(props.doctor.slots) === "object")
-            setLoaded(true);
-    }, [props.doctor.slots, props.doctor.appointments])
 
     return <>
     { props.doctor.slots &&
@@ -61,13 +52,6 @@ export default function SlotSelector (props) {
                     <div className="dayTimeBlock">
                         {
                             Object.keys(props.doctor.slots).map(slot => 
-                            //     props.doctor.appointments.map(appointment => {
-                            //         appTime = new Date(appointment.time);
-                            //         checkTime = new Date(slotWeek[i]);
-                            //         if (appTime.toLocaleDateString() === checkTime.toLocaleDateString() && appTime.getHours() === checkTime.getHours())
-                            //             setAppCount(appCount + 1);
-                            //     })
-                            //     (appCount >= 4 && props.doctor.slots[slot]) ?
                                 slot && props.doctor.slots[slot] ?
                                     <p 
                                         className={(slotDate.getDate() === slotWeek[i].getDate() && slotTime === slot.substring(0, 5)) ? "timeBlock-selected" : "timeBlock-available"} 
