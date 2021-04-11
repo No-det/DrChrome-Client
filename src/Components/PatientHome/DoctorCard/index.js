@@ -44,7 +44,7 @@ const DoctorCard = (props) => {
         </div>
       </div>
       <div className="doctors__card__right">
-        <p>Unni's Hospital, New York</p>
+        <p>{ props.doctor?.hospital }</p>
         <table className="doctors__card__details">
           <tbody>
             <tr>
@@ -69,7 +69,7 @@ const DoctorCard = (props) => {
         </table>
         <div className="doctors__card__appointment__button">
           {/* <Link to={{pathname: "/appointment", state: {id: props.doctor._id}}}>MAKE APPOINTMENT</Link> */}
-          <a href={`/appointment/${props.doctor._id}`}>MAKE APPOINTMENT</a>
+          <a href={`/appointment/${props.doctor.uid}`}>MAKE APPOINTMENT</a>
         </div>
       </div>
     </div> }

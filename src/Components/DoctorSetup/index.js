@@ -17,20 +17,25 @@ let slots = [
 
 const DoctorSetup = (props) => {
   const { user, changeUser } = useContext(AuthContext);
-  const [selectedSlots, setselectedSlots] = useState([]);
+  // const [selectedSlots, setselectedSlots] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState();
   const setupForm = useRef();
+  
 
   const onFinish = async (values) => {
+    let selectedSlots = []
     setUploading(true);
     slots.map((slot) => {
-      if (values[slot] === true) setselectedSlots(selectedSlots.push(true));
-      else setselectedSlots(selectedSlots.push(false));
+      if (values[slot] === true) selectedSlots.push(true);
+      else selectedSlots.push(false);
     });
+    let response = await axios.get(
+      `http://localhost:8000/api/getUser/${user.uid}`
+    );
     const newUser = {
-      ...user,
+      ...response.data,
       ...values,
       slots: {
         "10:00 - 11:00": selectedSlots[0],
@@ -44,14 +49,13 @@ const DoctorSetup = (props) => {
       dob: new Date(values.dob.format("DD/MM/YYYY")),
       isVerified: true,
     };
-    console.log(newUser);
     const url = "http://localhost:8000/api/updateUser";
-    const response = await axios.post(url, newUser);
+    response = await axios.post(url, newUser);
     setTimeout(() => {
       setUploading(false);
     }, 2000);
+    console.log(response.statusText);
     if (response.statusText === "OK") {
-      changeUser(response.data.token);
       setRedirect(true);
     } else {
       setError(response.data);

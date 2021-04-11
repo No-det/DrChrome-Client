@@ -8,19 +8,32 @@ import DoctorCard from "./DoctorCard";
 import { AuthContext } from "../../Contexts/Auth__Context";
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios'
+import axios from 'axios';
 
 const PatientHome = (props) => {
   const { user } = useContext(AuthContext);
+  const [userData, setUserData] = useState(null);
   const [doctors, setDoctors] = useState([]);
   let nextApp, nextAppEnd;
-  if (user.upcomingApps && user.upcomingApps.length !== 0)
-  {
-    nextApp = new Date(user.upcomingApps[0].time)
-    console.log(new Date(user.upcomingApps[0].time))
-    nextAppEnd = new Date(nextApp);
-    nextAppEnd.setMinutes(nextApp.getMinutes() + 30);
-  }
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const fetchUserData = async () => {
+    const response = await axios.get(
+      `http://localhost:8000/api/getUser/${user.uid}`
+    );
+    setUserData(response.data);
+    console.log(response.data);
+    if (response.data.upcomingApps && response.data.upcomingApps.length !== 0)
+    {
+      nextApp = new Date(response.data.upcomingApps[0].time)
+      console.log(new Date(response.data.upcomingApps[0].time))
+      nextAppEnd = new Date(nextApp);
+      nextAppEnd.setMinutes(nextApp.getMinutes() + 30);
+    }
+  };
   // eslint-disable-next-line
   useEffect(async() => {
     let res = await axios.get("http://localhost:8000/api/getDoctors");
@@ -28,7 +41,7 @@ const PatientHome = (props) => {
   }, [])
 
   return (
-    user && 
+    user && userData && 
     <>
     <div className="patient__container">
       <div className="patient__greeting">
@@ -40,7 +53,7 @@ const PatientHome = (props) => {
           <div className="patient__greetings">
             <div className="patient__greetings__left">
               <h3>
-                Good Morning, <Link to="/profile/">{ user.name }</Link>
+                Good Morning, <Link to="/profile/">{ userData.name }</Link>
               </h3>
               <p>Have a nice day!</p>
             </div>
@@ -53,7 +66,7 @@ const PatientHome = (props) => {
           <div className="patient__appointment__history">
             <p>Appointment History</p>
           </div>
-          {user && user.isVerified ? (
+          {userData && userData.isVerified ? (
             <div className="patient__next__appointment">
               { nextApp ?
                 <>
@@ -76,11 +89,11 @@ const PatientHome = (props) => {
         <div className="patient__header__right">
           <div className="patient__dp">
             <img
-              src={user.image}
-              alt={`${user.name}'s DP`}
+              src={userData.image}
+              alt={`${userData.name}'s DP`}
             />
           </div>
-          <Link to="/profile">{user.name}</Link>
+          <Link to="/profile">{userData.name}</Link>
         </div>
       </div>
       <div className="patient__doctors">

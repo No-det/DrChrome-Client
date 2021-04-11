@@ -2,22 +2,27 @@ import "./index.css";
 // import Slot from './Slot';
 import AppoinmentForm from "./AppoinmentForm";
 import SlotSelector from "./SlotSelector";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
 import axios from "axios";
+import { AuthContext } from "../../Contexts/Auth__Context";
 
 const Appointment = () => {
+  const { user } = useContext(AuthContext);
 
   const [doctor, setDoctor] = useState({});
   // eslint-disable-next-line
-  useEffect(async () => {
-    let res, id;
-    id = window.location.pathname.split("/")[2];
-    if (id)
-    {
-      res = await axios.get(`http://localhost:8000/api/getUser/${id}`)
-      setDoctor(res.data);
-      console.log(doctor)
+  useEffect(() => {
+    const getDocData = async () => {
+      let res, uid;
+      uid = window.location.pathname.split("/")[2];
+      if (uid)
+      {
+        res = await axios.get(`http://localhost:8000/api/getUser/${uid}`)
+        setDoctor(res.data);
+        console.log(res.data)
+      }
     }
+    getDocData();
   }, [])
 
   return (

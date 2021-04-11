@@ -16,7 +16,7 @@ export default function Navbar(props) {
         home
       </Link>
       <Link
-        to="/profile"
+        to="/doctorSetup"
         className={selected === 2 ? `material-icons active` : `material-icons`}
         onClick={() => setSelected(2)}
       >
@@ -30,7 +30,7 @@ export default function Navbar(props) {
         folder
       </Link>
       <Link
-        to="/doctor"
+        to="/profile"
         className={selected === 4 ? `material-icons active` : `material-icons`}
         onClick={() => setSelected(4)}
       >

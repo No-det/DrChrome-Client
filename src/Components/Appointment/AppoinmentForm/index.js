@@ -15,7 +15,7 @@ const AppointmentForm =() => {
   const [redirect, setRedirect] = useState(false);
   const [data, setData] = useState(null);
 
-  const { user, changeUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const onFinish = async (formValues) => {
     setData({...formValues, time: localStorage.getItem("slotTime"), doctorID: doctorID});
@@ -29,25 +29,30 @@ const AppointmentForm =() => {
     return e && e.fileList;
   };
 
+  const sendAppointmentData = async () => {
+    console.log("@func-start")
+    if (localStorage.getItem("slotTime") !== "invalid") {
+      console.log("@func-if")
+      const res = await axios.post(`http://localhost:8000/api/appointment/${user.uid}`, data);
+      console.log(res)
+      if (res.status === 200) {
+        console.log("@func-res-200")
+        setRedirect(true);
+      } else if (res.status === 203)
+        alert("Booking cancelled. Complete the booked appointments to book a new one.")
+    }
+    else alert("Please select a valid slot");
+  }
+
   useEffect(() => {
     setDoctorID(window.location.pathname.split("/")[2]);
   }, [])
 
   useEffect(async () => {
-    if (data !== null) {
-      if (localStorage.getItem("slotTime") !== "invalid") {
-        const res = await axios.post(`http://localhost:8000/api/appointment/${user._id}`, data);
-        console.log(res)
-        if (res.status === 200) {
-          changeUser(res.data);
-          console.log("ok");
-          setRedirect(true);
-        } else if (res.status === 203)
-          alert("Booking cancelled. Complete the booked appointments to book a new one.")
-      }
-      else alert("Please select a valid slot");
-    }
-  }, [data, user])
+    console.log("@async-start")
+    if (data !== null) sendAppointmentData();
+    console.log("@async-end")
+  }, [data])
 
   return (
     redirect ? <Redirect to="/patient/" /> :

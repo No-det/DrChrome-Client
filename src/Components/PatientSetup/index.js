@@ -9,7 +9,7 @@ import DoctorSetup from "../DoctorSetup";
 const { Option } = Select;
 
 const PatientSetup = (props) => {
-  const { user, changeUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [uploading, setUploading] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState();
@@ -17,19 +17,21 @@ const PatientSetup = (props) => {
 
   const onFinish = async (values) => {
     setUploading(true);
+    let response = await axios.get(
+      `http://localhost:8000/api/getUser/${user.uid}`
+    );
     const newUser = {
-      ...user,
+      ...response.data,
       ...values,
       dob: new Date(values.dob.format("DD/MM/YYYY")),
       isVerified: true,
     };
     const url = "http://localhost:8000/api/updateUser";
-    const response = await axios.post(url, newUser);
+    response = await axios.post(url, newUser);
     setTimeout(() => {
       setUploading(false);
     }, 2000);
     if (response.statusText === "OK") {
-      changeUser(response.data.token);
       setRedirect(true);
     } else {
       setError(response.data);

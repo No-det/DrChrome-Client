@@ -64,7 +64,7 @@ const DoctorHome = () => {
             <p>
               Good Morning,
               <Link to="/profile">
-                <em>Dr. {user.name}</em>
+                <em>Dr. {userData.name}</em>
               </Link>
             </p>
             <p style={{ fontWeight: 400 }}>Have a good day at work!</p>
@@ -98,8 +98,8 @@ const DoctorHome = () => {
       <div className="docRight">
         <div className="docDetails">
           <Link>
-            <p>Dr. {user.name}</p>
-            <img src={user.image} alt={user.name} style={{ marginRight: 10 }} />
+            <p>Dr. {userData.name}</p>
+            <img src={userData.image} alt={userData.name} style={{ marginRight: 10 }} />
           </Link>
         </div>
         <div className="lastReport">
